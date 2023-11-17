@@ -3,8 +3,8 @@ import Link from "next/link";
 import React from "react";
 
 const navigation = [
-  { name: "About", href: "/" },
-  { name: "Projects", href: "/projects" },
+  { name: "About", href: "/about" },
+  { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
 ];
 
