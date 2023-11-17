@@ -1,37 +1,45 @@
+import Particles from "@/components/particles";
 import Link from "next/link";
+import React from "react";
 
-export default function HomePage() {
+const navigation = [
+  { name: "About", href: "/" },
+  { name: "Projects", href: "/projects" },
+  { name: "Contact", href: "/contact" },
+];
+
+export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1  gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold ">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
-      </div>
-    </main>
+    <div className="flex h-screen w-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
+      <nav className="animate-fade-in my-16">
+        <ul className="flex items-center justify-center gap-4">
+          {navigation.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-sm text-zinc-500 duration-500 hover:text-zinc-300"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </ul>
+      </nav>
+      <div className="animate-glow animate-fade-left hidden h-px w-screen bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 md:block" />
+      <Particles
+        className="animate-fade-in absolute inset-0 -z-10"
+        quantity={100}
+      />
+      <h1 className="text-edge-outline animate-title font-display z-10 cursor-default whitespace-nowrap bg-white bg-clip-text text-4xl text-transparent duration-1000 sm:text-6xl md:text-9xl ">
+        HELLO I&apos;M
+      </h1>
+      <h1 className="text-edge-outline animate-title font-display z-10 cursor-default whitespace-nowrap bg-white bg-clip-text text-4xl text-transparent duration-1000 sm:text-6xl md:text-9xl ">
+        JEMMA
+      </h1>
+      <h1 className="text-edge-outline animate-title font-display z-10 cursor-default whitespace-nowrap bg-white bg-clip-text text-4xl text-transparent duration-1000 sm:text-6xl md:text-9xl ">
+        WEDGWOOD
+      </h1>
+
+      <div className="animate-glow animate-fade-right hidden h-px w-screen bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 md:block" />
+    </div>
   );
 }
