@@ -38,7 +38,9 @@ export default function CustomNavbar() {
         className="sm:hidden"
       />
       <NavbarBrand>
-        <p className="font-bold text-inherit">Jemma Wedgwood</p>
+        <Link color={"foreground"} href={"/"}>
+          <p className="font-bold text-inherit">Jemma Wedgwood</p>
+        </Link>
       </NavbarBrand>
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
         {navItems.map((item) => (
