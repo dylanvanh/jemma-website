@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Navbar,
@@ -5,44 +7,68 @@ import {
   NavbarContent,
   NavbarItem,
   Link,
-  Button,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
 } from "@nextui-org/react";
-import { AcmeLogo } from "./acme-logo";
+import { usePathname } from "next/navigation";
+
+type NavItem = {
+  name: string;
+  href: string;
+};
+
+const navItems: NavItem[] = [
+  { name: "About", href: "/about" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Contact", href: "/contact" },
+];
 
 export default function CustomNavbar() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const pathName: string = usePathname();
+  console.log("pathName", pathName);
+  console.log(pathName.includes(navItems[0]!.href));
+
   return (
-    <Navbar>
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <NavbarMenuToggle
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        className="sm:hidden"
+      />
       <NavbarBrand>
-        <AcmeLogo />
-        <p className="font-bold text-inherit">ACME</p>
+        <p className="font-bold text-inherit">Jemma Wedgwood</p>
       </NavbarBrand>
       <NavbarContent className="hidden gap-4 sm:flex" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
+        {navItems.map((item) => (
+          <NavbarItem
+            key={item.name + item.href}
+            isActive={pathName.includes(item.href) ? true : false}
+          >
+            <Link color={"foreground"} href={item.href}>
+              {item.name}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+      <NavbarMenu>
+        {navItems.map((item) => (
+          <NavbarMenuItem
+            key={item.name + item.href}
+            isActive={pathName.includes(item.href) ? true : false}
+          >
+            <Link
+              color={"foreground"}
+              className="w-full"
+              href={item.href}
+              size="lg"
+            >
+              {item.name}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
     </Navbar>
   );
 }

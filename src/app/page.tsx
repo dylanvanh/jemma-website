@@ -1,5 +1,4 @@
 import CustomNavbar from "@/components/custom-navbar";
-import { Navbar } from "@nextui-org/react";
 import React from "react";
 
 const navigation = [
@@ -9,9 +8,5 @@ const navigation = [
 ];
 
 export default function Home() {
-  return (
-    <div>
-      <CustomNavbar />
-    </div>
-  );
+  return <div></div>;
 }
