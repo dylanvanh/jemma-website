@@ -1,8 +1,9 @@
 import "@/styles/globals.css";
 
+import CustomNavbar from "@/components/custom-navbar";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
-import CustomNavbar from "@/components/custom-navbar";
+import { TailwindIndicator } from "@/components/dev/tailwind-indicator";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <CustomNavbar />
         <Providers>{children}</Providers>
+        <TailwindIndicator />
       </body>
     </html>
   );
