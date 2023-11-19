@@ -1,5 +1,3 @@
-import Particles from "@/components/particles";
-
 export default function CONTACT() {
   return (
     <div>
