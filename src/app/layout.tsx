@@ -2,13 +2,11 @@ import "@/styles/globals.css";
 
 import CustomNavbar from "@/components/custom-navbar";
 import { Inter } from "next/font/google";
-import { Providers } from "./providers";
+import { Providers } from "../components/providers/providers";
 import { TailwindIndicator } from "@/components/dev/tailwind-indicator";
+import { ModeToggle } from "@/components/mode-toggle";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create T3 App",
@@ -22,10 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="light">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <CustomNavbar />
         <Providers>{children}</Providers>
+        <ModeToggle />
         <TailwindIndicator />
       </body>
     </html>
