@@ -30,8 +30,8 @@ export function MainNav({ navItems }: MainNavProps) {
             <Link key={index} href={item.href}>
               <span
                 className={cn(
-                  "group flex rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
-                  path === item.href ? "bg-accent" : "transparent",
+                  "flex rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                  path.includes(item.href) ? "bg-accent" : "transparent",
                 )}
               >
                 <span>{item.title}</span>

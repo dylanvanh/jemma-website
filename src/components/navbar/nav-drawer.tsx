@@ -44,7 +44,7 @@ export function NavDrawer({ navItems }: SideNavProps) {
                   className={cn(
                     "my-5 p-5",
                     "group flex rounded-md hover:bg-accent hover:text-accent-foreground",
-                    path === item.href ? "bg-accent" : "transparent",
+                    path.includes(item.href) ? "bg-accent" : "transparent",
                   )}
                 >
                   <span className={"flex items-center justify-start"}>
