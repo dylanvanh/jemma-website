@@ -1,4 +1,4 @@
-import Particles from "@/components/particles";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Gallery() {
   return (
