@@ -1,7 +1,11 @@
-export default function CONTACT() {
+import { FooterSection } from "@/sections/footer";
+import { LandingSection } from "@/sections/landing";
+
+export default function CombinedSections() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <>
+      <LandingSection />
+      {/* <FooterSection /> */}
+    </>
   );
 }
