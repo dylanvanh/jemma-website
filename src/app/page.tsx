@@ -5,7 +5,7 @@ export default function CombinedSections() {
   return (
     <>
       <LandingSection />
-      {/* <FooterSection /> */}
+      <FooterSection />
     </>
   );
 }
