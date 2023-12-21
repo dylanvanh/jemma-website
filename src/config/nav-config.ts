@@ -4,12 +4,12 @@ import { Wrench } from "lucide-react";
 export const navBarConfig: NavBarConfig = {
   navItems: [
     {
-      title: "About",
-      href: "#about",
-    },
-    {
       title: "Portfolio",
       href: "#Portfolio",
+    },
+    {
+      title: "About",
+      href: "#about",
     },
     {
       title: "Experience",
