@@ -5,15 +5,19 @@ export const navBarConfig: NavBarConfig = {
   navItems: [
     {
       title: "About",
-      href: "/about",
+      href: "#about",
     },
     {
-      title: "Gallery",
-      href: "/gallery",
+      title: "Portfolio",
+      href: "#Portfolio",
+    },
+    {
+      title: "Experience",
+      href: "#experience",
     },
     {
       title: "Contact",
-      href: "/contact",
+      href: "#contact",
     },
   ],
 };
