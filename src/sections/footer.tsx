@@ -2,7 +2,7 @@ import { Instagram, Linkedin, Mail } from "lucide-react";
 
 export function FooterSection() {
   return (
-    <footer className="flex-col bg-gray-100 p-6 ">
+    <footer id="footer" className="flex-col bg-gray-100 p-6">
       <h1 className="py-10 text-5xl">I would love to hear from you!</h1>
       <h2 className="text-3xl">
         <i>jemmaofficial01@gmail.com</i>
