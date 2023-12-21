@@ -20,7 +20,7 @@ export function MainNav({ navItems }: MainNavProps) {
   }
 
   return (
-    <nav className="flex justify-between px-12 py-5">
+    <nav className="z-10 flex w-full justify-between px-12 py-5">
       <Link href="/" className="flex items-center space-x-2">
         <span className="font-bold">Jemma Wedgwood</span>
       </Link>
@@ -30,7 +30,7 @@ export function MainNav({ navItems }: MainNavProps) {
             <Link key={index} href={item.href}>
               <span
                 className={cn(
-                  "flex rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                  "flex rounded-md px-3 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground",
                   path.includes(item.href) ? "bg-accent" : "transparent",
                 )}
               >
