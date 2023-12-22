@@ -32,7 +32,7 @@ export function LandingSection() {
               "lg:text-5xl",
             )}
           >
-            <i>Hey There 👋</i>
+            <i>Hello 👋</i>
           </h2>
           <h1
             className={cn(
@@ -55,7 +55,7 @@ export function LandingSection() {
           >
             <i>Interior Designer 🎨</i>
           </h2>
-          <a href="#footer" className="mt-8 text-blue-800 sm:mt-10">
+          <a href="#portfolio" className="mt-8 text-blue-800 sm:mt-10">
             {" "}
             <button className="text-2xl text-blue-800">
               <b>Learn More ↓</b>

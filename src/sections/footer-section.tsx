@@ -1,21 +1,13 @@
-import { type NavItem } from "@/types/navbar";
+import { navBarConfig } from "@/config/nav-config";
 import { Instagram, Linkedin, Mail } from "lucide-react";
 
-export type FooterProps = {
-  navItems: NavItem[];
-};
-
-export default function FooterSection({ navItems }: FooterProps) {
+export default function FooterSection() {
   const currentYear = new Date().getFullYear();
-
-  if (!navItems?.length) {
-    return null;
-  }
 
   return (
     <footer className="flex flex-col items-center justify-center bg-gray-100 py-5">
       <div className="mb-5 flex flex-row">
-        {navItems.map((item, index) => {
+        {navBarConfig.navItems.map((item, index) => {
           return (
             <a key={index} href={item.href} className="mx-5 text-gray-600">
               {item.title}
