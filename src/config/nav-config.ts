@@ -5,7 +5,7 @@ export const navBarConfig: NavBarConfig = {
   navItems: [
     {
       title: "Portfolio",
-      href: "#Portfolio",
+      href: "#portfolio",
     },
     {
       title: "About",
