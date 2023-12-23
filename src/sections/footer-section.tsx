@@ -31,7 +31,7 @@ export default function FooterSection() {
           <Linkedin size={28} />
         </a>
         <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/jemma982/"
           target="_blank"
           rel="noopener noreferrer:console.warn();"
           className="mx-5 text-gray-600 hover:text-pink-500"

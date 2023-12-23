@@ -9,7 +9,7 @@ export default function CombinedSections() {
   return (
     <>
       <LandingSection />
-      <FooterSection navItems={navBarConfig.navItems} />
+      <FooterSection />
     </>
   );
 }
