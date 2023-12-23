@@ -1,6 +1,6 @@
-import FooterSection from "@/sections/footer";
-import { LandingSection } from "@/sections/landing";
-import { navBarConfig } from "@/config/nav-config";
+import FooterSection from "@/sections/footer-section";
+import { LandingSection } from "@/sections/landing-section";
+import { PortfolioSection } from "@/sections/portfolio-section";
 
 export default function CombinedSections() {
   console.log(
