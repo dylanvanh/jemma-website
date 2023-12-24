@@ -5,7 +5,7 @@ export function LandingSection() {
     <>
       <section
         className={cn(
-          "flex min-h-screen flex-col items-center px-4 py-10",
+          "flex flex-col items-center px-4 py-10",
           "sm:px-6 sm:py-16",
           "md:-mt-16 md:h-[95vh] md:flex-row md:items-center md:justify-center md:px-10 md:py-20",
         )}
@@ -24,16 +24,6 @@ export function LandingSection() {
           </Avatar>
         </div>
         <div className="flex flex-col items-center text-center">
-          <h2
-            className={cn(
-              "mb-5 text-xl",
-              "sm:text-2xl",
-              "md:text-3xl",
-              "lg:text-5xl",
-            )}
-          >
-            <i>Hello 👋</i>
-          </h2>
           <h1
             className={cn(
               "mb-5 py-4 text-3xl",
@@ -42,7 +32,7 @@ export function LandingSection() {
               "lg:py-10 lg:text-7xl",
             )}
           >
-            I&apos;m <b>Jemma Wedgwood</b>
+            <b>Jemma Wedgwood</b>
           </h1>
           <h2
             className={cn(
