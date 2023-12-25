@@ -8,7 +8,7 @@ import { ArrowRightCircle, ArrowUpRight } from "lucide-react";
 
 type PortfolioItem = {
   title: string;
-  interiorType: string;
+  designType: string;
   href: string;
   imageUrl: string;
 };
@@ -40,7 +40,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
             <div className="flex h-full items-center justify-center">
               <div className="text-center text-white">
                 <p className="text-lg font-bold">{portfolioItem.title}</p>
-                <p>{portfolioItem.interiorType}</p>
+                <p>{portfolioItem.designType}</p>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         <div className="mt-3 flex flex-row justify-between">
           <div>
             <h4 className="text-xl font-bold">{portfolioItem.title}</h4>
-            <p className="font-light">{portfolioItem.interiorType}</p>
+            <p className="font-light">{portfolioItem.designType}</p>
           </div>
           <ArrowRightCircle className="h-12 w-12 hover:cursor-pointer" />
         </div>

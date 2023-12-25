@@ -1,7 +1,7 @@
 export type PortfolioItem = {
   title: string;
   href: string;
-  interiorType: string;
+  designType: string;
   imageUrl: string;
   markdownFileName: string;
 };
