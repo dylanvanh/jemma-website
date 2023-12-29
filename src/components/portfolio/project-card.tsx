@@ -7,10 +7,11 @@ import { cn } from "@/lib/utils";
 import { ArrowRightCircle, ArrowUpRight } from "lucide-react";
 
 type PortfolioItem = {
+  id: string;
   title: string;
   designType: string;
   href: string;
-  imageUrl: string;
+  previewImageUrl: string;
 };
 
 interface ProjectCardProps extends React.ComponentPropsWithoutRef<"div"> {
@@ -22,7 +23,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
     const router = useRouter();
 
     const handleClick = () => {
-      router.push(portfolioItem.href);
+      router.push(portfolioItem.href + "/" + portfolioItem.id);
     };
 
     return (
@@ -46,7 +47,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
           </div>
 
           <Image
-            src={portfolioItem.imageUrl}
+            src={portfolioItem.previewImageUrl}
             alt="Interior"
             width={400}
             height={400}
