@@ -1,9 +1,11 @@
 export type PortfolioItem = {
-  title: string;
+  id: string;
   href: string;
+  title: string;
+  description: string;
   designType: string;
-  imageUrl: string;
-  markdownFileName: string;
+  previewImageUrl: string;
+  imageListUrls: string[];
 };
 
 export type PortfolioConfig = {
