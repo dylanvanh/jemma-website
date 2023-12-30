@@ -1,4 +1,4 @@
-import ProjectCard from "@/components/project-card";
+import ProjectCard from "@/components/portfolio/project-card";
 import { portfolioConfig } from "@/config/portfolio-config";
 
 export function PortfolioSection() {

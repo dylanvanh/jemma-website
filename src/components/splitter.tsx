@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-interface SplitterProps extends React.ComponentPropsWithoutRef<"div"> {
+interface SplitterProps extends React.HTMLAttributes<HTMLDivElement> {
   sectionTitle: string;
 }
 
