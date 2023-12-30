@@ -1,7 +1,6 @@
-import GalleryCarousel from "@/components/portfolio/gallery-carousel";
+import Gallery from "@/components/portfolio/gallery";
 import { portfolioConfig } from "@/config/portfolio-config";
 import { type PortfolioItem } from "@/types/portfolio";
-console.log(portfolioConfig.portfolioItems);
 
 export default function Page({ params }: { params: { id: string } }) {
   const filterPortfolioItem: PortfolioItem | undefined =
@@ -15,15 +14,15 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center space-y-4 py-5 md:mb-14">
+        <div className="flex flex-col items-center space-y-4 py-5 md:mb-10">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">
             {filterPortfolioItem?.title}
           </h2>
-          <p className="md:text-l mx-auto max-w-[1100px] px-8 text-xs text-gray-500 dark:text-gray-400 sm:text-sm xl:text-xl">
+          <p className="md:text-l mx-auto px-8 text-xs text-gray-500 dark:text-gray-400 md:max-w-[700px] lg:max-w-[900px] xl:text-xl 2xl:max-w-[1300px]">
             {filterPortfolioItem?.description}
           </p>
         </div>
-        <GalleryCarousel id={params.id} />
+        <Gallery id={params.id} />
       </div>
     </>
   );
