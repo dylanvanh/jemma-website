@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
 import { ArrowRightCircle, ArrowUpRight } from "lucide-react";
 
 type PortfolioItem = {
@@ -52,6 +52,9 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
             width={400}
             height={400}
             className="h-auto w-full rounded-t-lg object-cover"
+            placeholder={`data:image/svg+xml;base64,${toBase64(
+              createImagePlaceholderShimmer(400, 400),
+            )}`}
           />
 
           <div className="absolute bottom-4 right-4 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">

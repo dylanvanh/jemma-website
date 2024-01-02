@@ -1,6 +1,11 @@
 "use client";
 
-import { cn, getIsScreenMobile } from "@/lib/utils";
+import {
+  cn,
+  createImagePlaceholderShimmer,
+  getIsScreenMobile,
+  toBase64,
+} from "@/lib/utils";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -9,7 +14,7 @@ interface MobileImageListProps extends React.HTMLAttributes<HTMLDivElement> {
   imageQuality: number;
 }
 
-const ImageList: React.FC<MobileImageListProps> = ({
+const MobileImageList: React.FC<MobileImageListProps> = ({
   imageUrls,
   imageQuality,
   className,
@@ -38,6 +43,9 @@ const ImageList: React.FC<MobileImageListProps> = ({
               width={2000}
               height={2000}
               quality={imageQuality}
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                createImagePlaceholderShimmer(400, 400),
+              )}`}
               priority
             />
           ))}
@@ -47,4 +55,4 @@ const ImageList: React.FC<MobileImageListProps> = ({
   );
 };
 
-export default ImageList;
+export default MobileImageList;
