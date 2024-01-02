@@ -4,7 +4,7 @@ import { portfolioConfig } from "@/config/portfolio-config";
 import { cn, getIsScreenMobile } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import CustomCarousel from "./custom-carousel";
-import ImageList from "./image-list";
+import MobileImageList from "./mobile-image-list";
 import GridGallery from "./grid-gallery";
 import { Button } from "../ui/button";
 
@@ -42,7 +42,7 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
         !getIsScreenMobile(screenWidth) ? (
           <CustomCarousel imageUrls={imageUrls} imageQuality={50} />
         ) : (
-          <ImageList imageUrls={imageUrls} imageQuality={30} />
+          <MobileImageList imageUrls={imageUrls} imageQuality={30} />
         )
       ) : (
         <GridGallery imageUrls={imageUrls} imageQuality={50} />
