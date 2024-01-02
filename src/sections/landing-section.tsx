@@ -43,7 +43,7 @@ export function LandingSection() {
               "lg:text-5xl",
             )}
           >
-            <i>Interior Designer 🎨</i>
+            <i>Interior Designer</i>
           </h2>
           <a href="#portfolio" className="mt-8 text-blue-800 sm:mt-10">
             {" "}
