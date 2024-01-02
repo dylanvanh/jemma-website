@@ -9,7 +9,7 @@ interface MobileImageListProps extends React.HTMLAttributes<HTMLDivElement> {
   imageQuality: number;
 }
 
-const ImageList: React.FC<MobileImageListProps> = ({
+const MobileImageList: React.FC<MobileImageListProps> = ({
   imageUrls,
   imageQuality,
   className,
@@ -47,4 +47,4 @@ const ImageList: React.FC<MobileImageListProps> = ({
   );
 };
 
-export default ImageList;
+export default MobileImageList;
