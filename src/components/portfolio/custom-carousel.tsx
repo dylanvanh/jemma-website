@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
+import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
 import Image from "next/image";
 import React, { useEffect } from "react";
 
@@ -60,6 +60,9 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({
                 height={2000}
                 quality={imageQuality}
                 priority
+                placeholder={`data:image/svg+xml;base64,${toBase64(
+                  createImagePlaceholderShimmer(400, 400),
+                )}`}
               />
             </CarouselItem>
           ))}

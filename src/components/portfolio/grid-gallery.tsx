@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { XCircle } from "lucide-react";
+import { createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
 
 interface GridGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   imageUrls: string[];
@@ -70,6 +71,9 @@ const GridGallery: React.FC<GridGalleryProps> = ({
               width={100}
               height={100}
               quality={imageQuality}
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                createImagePlaceholderShimmer(400, 400),
+              )}`}
             />
           </div>
         </div>
