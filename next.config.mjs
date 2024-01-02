@@ -7,7 +7,12 @@ await import("./src/env.mjs");
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    domains: ["i.imgur.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.imgur.com",
+      },
+    ],
   },
 };
 
