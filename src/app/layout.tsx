@@ -1,12 +1,22 @@
 import "@/styles/globals.css";
 
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
+import localFont from "next/font/local";
 import { Providers } from "../components/providers/providers";
 import { TailwindIndicator } from "@/components/dev/tailwind-indicator";
 import { MainNav } from "@/components/navbar/main-nav";
 import { navBarConfig } from "@/config/nav-config";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const fontHeading = localFont({
+  src: "../fonts/CalSans-SemiBold.woff2",
+  variable: "--font-heading",
+});
 
 export const metadata = {
   title: "Jemma Wedgwood",
@@ -21,7 +31,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          fontHeading.variable,
+        )}
+      >
         <Providers>
           <MainNav navItems={navBarConfig.navItems} />
           {children}
