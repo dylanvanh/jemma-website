@@ -1,4 +1,4 @@
-export type PortfolioItem = {
+export type ProjectItem = {
   id: string;
   href: string;
   title: string;
@@ -8,6 +8,6 @@ export type PortfolioItem = {
   imageListUrls: string[];
 };
 
-export type PortfolioConfig = {
-  portfolioItems: PortfolioItem[];
+export type ProjectConfig = {
+  projectItems: ProjectItem[];
 };

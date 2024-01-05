@@ -1,12 +1,12 @@
-import ProjectCard from "@/components/portfolio/project-card";
-import { portfolioConfig } from "@/config/portfolio-config";
+import ProjectCard from "@/components/projects/project-card";
+import { projectConfig } from "@/config/project-config";
 
-export function PortfolioSection() {
+export function ProjectSection() {
   return (
     <>
       <section id="portfolio" className="p-12">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {portfolioConfig.portfolioItems.map((item, index) => {
+          {projectConfig.projectItems.map((item, index) => {
             return (
               <ProjectCard
                 key={index}

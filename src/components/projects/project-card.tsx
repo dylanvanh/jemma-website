@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
-import { ArrowRightCircle, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowRightCircle, ArrowUpRight } from "lucide-react";
 
 type PortfolioItem = {
   id: string;
@@ -51,7 +51,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
             alt="Interior"
             width={400}
             height={400}
-            className="h-auto w-full rounded-t-lg object-cover"
+            className="h-auto w-full  object-cover"
             placeholder={`data:image/svg+xml;base64,${toBase64(
               createImagePlaceholderShimmer(400, 400),
             )}`}
