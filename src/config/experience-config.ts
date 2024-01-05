@@ -21,7 +21,7 @@ export const experienceConfig: ExperienceConfig = {
     {
       title: "Adisa Design",
       jobType: "Interior Design",
-      description: "Multiple Sorbet nail salon interiors redesign",
+      description: "Intern",
       period: "2023-2023",
       employmentType: "Part Time",
       logoUrl: "https://i.imgur.com/QxvwzSVs.png",
@@ -30,7 +30,7 @@ export const experienceConfig: ExperienceConfig = {
       title: "Vega School",
       jobType: "Interior Design",
       description: "Student",
-      period: "2021-2023",
+      period: "2021-Present",
       employmentType: "Full Time",
       logoUrl: "https://i.imgur.com/OemeEEjs.png",
     },
