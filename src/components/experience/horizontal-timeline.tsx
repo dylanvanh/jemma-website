@@ -6,10 +6,8 @@ const HorizontalTimeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
 }) => {
   return (
-    <div className="mx-8">
-      <div
-        className={cn("mb-4 flex border-t-2 border-dashed pl-16", className)}
-      >
+    <div className="mx-12">
+      <div className={cn("flex border-t-2 border-dashed pl-16", className)}>
         {[...experienceConfig.experienceItems].reverse().map((item, index) => (
           <div key={index} className="relative flex w-full flex-row">
             <svg
@@ -25,7 +23,7 @@ const HorizontalTimeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
               />
             </svg>
             <div className="flex flex-col items-center justify-center">
-              <Avatar className="mb-2 ml-3 mt-5 h-14 w-14">
+              <Avatar className="mb-2 ml-3 mt-8 h-14 w-14">
                 <AvatarImage src={item.logoUrl} alt="Company Logo" />
               </Avatar>
               <div className="ml-6">

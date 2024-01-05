@@ -6,9 +6,9 @@ export function LandingSection() {
       <section
         id="landing"
         className={cn(
-          "flex flex-col items-center px-4 py-10",
+          "container flex flex-col items-center px-4 py-10",
           "sm:px-6 sm:py-16",
-          "md:-mt-16 md:h-[95vh] md:flex-row md:items-center md:justify-center md:px-10 md:py-20",
+          "md:-mt-16 md:h-[100vh] md:flex-row md:items-center md:justify-center md:px-10 md:py-20",
         )}
       >
         <div className={cn("md:px-10", "lg:px-10")}>
@@ -27,13 +27,14 @@ export function LandingSection() {
         <div className="flex flex-col items-center text-center">
           <h1
             className={cn(
+              "font-heading",
               "mb-5 py-4 text-3xl",
               "sm:text-4xl",
               "md:py-6 md:text-5xl",
               "lg:py-10 lg:text-7xl",
             )}
           >
-            <b>Jemma Wedgwood</b>
+            Jemma Wedgwood
           </h1>
           <h2
             className={cn(

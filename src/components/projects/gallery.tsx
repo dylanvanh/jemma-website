@@ -45,7 +45,7 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
           <MobileImageList imageUrls={imageUrls} imageQuality={30} />
         )
       ) : (
-        <GridGallery imageUrls={imageUrls} imageQuality={50} />
+        <GridGallery imageUrls={imageUrls} imageQuality={50} className="mb-4" />
       )}
     </div>
   );
