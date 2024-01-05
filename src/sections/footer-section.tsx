@@ -1,5 +1,5 @@
 import { navBarConfig } from "@/config/nav-config";
-import { Instagram, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 export default function FooterSection() {
   const currentYear = new Date().getFullYear();
@@ -29,14 +29,6 @@ export default function FooterSection() {
           className="mx-5 text-gray-600 hover:text-blue-600"
         >
           <Linkedin size={28} />
-        </a>
-        <a
-          href="https://www.instagram.com/jemma982/"
-          target="_blank"
-          rel="noopener noreferrer:console.warn();"
-          className="mx-5 text-gray-600 hover:text-pink-500"
-        >
-          <Instagram size={28} />
         </a>
       </div>
       <div className="text-xs text-gray-600 sm:text-sm">

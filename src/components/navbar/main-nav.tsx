@@ -21,7 +21,7 @@ export function MainNav({ navItems }: MainNavProps) {
 
   return (
     <nav className="z-10 flex w-full justify-between px-12 py-5">
-      <Link href="/" className="flex items-center space-x-2 sm:hidden md:flex">
+      <Link href="/" className="hidden items-center space-x-2 md:flex">
         <span className="font-bold">Jemma Wedgwood</span>
       </Link>
       <div className={"hidden md:flex"}>

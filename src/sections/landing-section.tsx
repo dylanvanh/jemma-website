@@ -4,6 +4,7 @@ export function LandingSection() {
   return (
     <>
       <section
+        id="landing"
         className={cn(
           "flex flex-col items-center px-4 py-10",
           "sm:px-6 sm:py-16",
@@ -45,12 +46,6 @@ export function LandingSection() {
           >
             <i>Interior Designer</i>
           </h2>
-          <a href="#portfolio" className="mt-8 text-blue-800 sm:mt-10">
-            {" "}
-            <button className="text-2xl text-blue-800">
-              <b>Learn More ↓</b>
-            </button>
-          </a>
         </div>
       </section>
     </>
