@@ -1,6 +1,6 @@
 "use client";
 
-import { portfolioConfig } from "@/config/portfolio-config";
+import { projectConfig } from "@/config/project-config";
 import { cn, getIsScreenMobile } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import CustomCarousel from "./custom-carousel";
@@ -18,7 +18,7 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
 
   const configIndex: number = Number(id) - 1;
   const imageUrls: string[] =
-    portfolioConfig.portfolioItems[configIndex]!.imageListUrls;
+    projectConfig.projectItems[configIndex]!.imageListUrls;
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);

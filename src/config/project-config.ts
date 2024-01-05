@@ -1,7 +1,7 @@
-import { type PortfolioConfig } from "@/types/portfolio";
+import { type ProjectConfig } from "@/types/project";
 
-export const portfolioConfig: PortfolioConfig = {
-  portfolioItems: [
+export const projectConfig: ProjectConfig = {
+  projectItems: [
     {
       id: "1",
       href: "/projects/",
