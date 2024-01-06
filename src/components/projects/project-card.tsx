@@ -68,7 +68,6 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
             <h4 className="text-xl font-bold">{portfolioItem.title}</h4>
             <p className="font-light">{portfolioItem.designType}</p>
           </div>
-          <ArrowRightCircle className="h-12 w-12 hover:cursor-pointer" />
         </div>
       </div>
     );
