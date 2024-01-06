@@ -4,10 +4,7 @@ import { projectConfig } from "@/config/project-config";
 export function ProjectSection() {
   return (
     <>
-      <section
-        id="portfolio"
-        className="container bg-slate-50 dark:bg-transparent"
-      >
+      <section id="projects" className="container">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {projectConfig.projectItems.map((item, index) => {
             return (

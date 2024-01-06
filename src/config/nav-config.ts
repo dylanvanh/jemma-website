@@ -4,8 +4,8 @@ import { Wrench } from "lucide-react";
 export const navBarConfig: NavBarConfig = {
   navItems: [
     {
-      title: "Portfolio",
-      href: "#portfolio",
+      title: "Projects",
+      href: "#projects",
     },
     {
       title: "About",
@@ -25,13 +25,18 @@ export const navBarConfig: NavBarConfig = {
 export const navbDropDown: NavBarConfig = {
   navItems: [
     {
-      title: "About",
-      href: "/about",
+      title: "Projects",
+      href: "#projects",
       icon: Wrench,
     },
     {
-      title: "Gallery",
-      href: "/gallery",
+      title: "About",
+      href: "#about",
+      icon: Wrench,
+    },
+    {
+      title: "Experience",
+      href: "/experience",
       icon: Wrench,
     },
     {
