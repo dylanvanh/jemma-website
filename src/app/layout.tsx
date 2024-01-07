@@ -7,6 +7,7 @@ import { TailwindIndicator } from "@/components/dev/tailwind-indicator";
 import { MainNav } from "@/components/navbar/main-nav";
 import { navBarConfig } from "@/config/nav-config";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
           {children}
         </Providers>
         <TailwindIndicator />
+        <Toaster />
       </body>
     </html>
   );
