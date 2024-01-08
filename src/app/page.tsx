@@ -1,4 +1,5 @@
 import Splitter from "@/components/splitter";
+import { AboutSection } from "@/sections/about-section";
 import { ContactSection } from "@/sections/contact-section";
 import { ExperienceSection } from "@/sections/experience-section";
 import FooterSection from "@/sections/footer-section";
@@ -9,15 +10,17 @@ export default function CombinedSections() {
   return (
     <>
       <LandingSection />
-      <Splitter className="mb-12 mt-5" sectionTitle="Projects" id="projects" />
+      <Splitter className="mb-12 pt-5" sectionTitle="About" id="about" />
+      <AboutSection />
+      <Splitter className="mb-12 pt-5" sectionTitle="Projects" id="projects" />
       <ProjectSection />
       <Splitter
-        className="mb-12 mt-5"
+        className="mb-12 pt-5"
         sectionTitle="Experience"
         id="experience"
       />
       <ExperienceSection />
-      <Splitter className="mb-12 mt-5" sectionTitle="Contact me" id="contact" />
+      <Splitter className="mb-12 pt-5" sectionTitle="Contact me" id="contact" />
       <ContactSection />
       <FooterSection />
     </>

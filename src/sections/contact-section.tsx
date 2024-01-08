@@ -84,7 +84,7 @@ export function ContactSection() {
 
   return (
     <>
-      <section className="container mb-20 flex w-2/3 flex-col items-center justify-center space-y-4 md:w-1/2">
+      <section className="container my-20 flex w-2/3 flex-col items-center justify-center space-y-4 md:w-1/2">
         <p className="text-gray-500 dark:text-gray-400 ">
           Have a question or want to work together?
         </p>

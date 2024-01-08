@@ -1,4 +1,3 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 export function LandingSection() {
   return (
@@ -6,26 +5,11 @@ export function LandingSection() {
       <section
         id="landing"
         className={cn(
-          "container flex flex-col items-center px-4 py-10",
-          "sm:px-6 sm:py-16",
-          "md:-mt-16 md:h-[100vh] md:flex-row md:items-center md:justify-center md:px-10 md:py-20",
+          "container flex flex-col items-center justify-center",
           "min-h-screen",
         )}
       >
-        <div className={cn("md:px-10", "lg:px-10")}>
-          <Avatar
-            className={cn(
-              "mb-10",
-              "h-56 w-56",
-              "md:h-56 md:w-56",
-              "lg:h-96 lg:w-96",
-            )}
-          >
-            <AvatarImage src="/jemma-profile.webp" />
-            <AvatarFallback>Jemma</AvatarFallback>
-          </Avatar>
-        </div>
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center justify-center">
           <h1
             className={cn(
               "font-heading",
