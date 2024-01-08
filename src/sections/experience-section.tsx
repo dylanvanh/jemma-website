@@ -9,7 +9,7 @@ export function ExperienceSection() {
   }
 
   return (
-    <section className="container">
+    <section className="container my-20">
       <HorizontalTimeline className="mx-8 mb-16 hidden lg:flex" />
       <VerticalTimeline className="mx-8 mb-16 lg:hidden" />
     </section>

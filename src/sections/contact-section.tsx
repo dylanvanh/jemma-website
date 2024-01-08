@@ -19,6 +19,14 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 export const contactFormSchema = z.object({
+  name: z
+    .string()
+    .min(1, {
+      message: "Required",
+    })
+    .max(100, {
+      message: "Message must not be longer than 50 characters.",
+    }),
   email: z.string().email(),
   message: z
     .string()
@@ -36,6 +44,7 @@ export function ContactSection() {
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
+      name: "",
       email: "",
       message: "",
     },
@@ -75,7 +84,7 @@ export function ContactSection() {
 
   return (
     <>
-      <section className="container mb-20 flex w-2/3 flex-col items-center justify-center space-y-4 md:w-1/2">
+      <section className="container my-20 flex w-2/3 flex-col items-center justify-center space-y-4 md:w-1/2">
         <p className="text-gray-500 dark:text-gray-400 ">
           Have a question or want to work together?
         </p>
@@ -84,6 +93,23 @@ export function ContactSection() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-8 text-center"
           >
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="mx-auto w-full xl:w-2/3"
+                      placeholder="Your name"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="email"
