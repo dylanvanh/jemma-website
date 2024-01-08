@@ -4,13 +4,13 @@ import { Wrench } from "lucide-react";
 export const navBarConfig: NavBarConfig = {
   navItems: [
     {
+      title: "About",
+      href: "#about",
+    },
+    {
       title: "Projects",
       href: "/#projects",
     },
-    // {
-    //   title: "About",
-    //   href: "#about",
-    // },
     {
       title: "Experience",
       href: "/#experience",
@@ -25,15 +25,15 @@ export const navBarConfig: NavBarConfig = {
 export const navbDropDown: NavBarConfig = {
   navItems: [
     {
+      title: "About",
+      href: "#about",
+      icon: Wrench,
+    },
+    {
       title: "Projects",
       href: "/#projects",
       icon: Wrench,
     },
-    // {
-    //   title: "About",
-    //   href: "#about",
-    //   icon: Wrench,
-    // },
     {
       title: "Experience",
       href: "/#experience",

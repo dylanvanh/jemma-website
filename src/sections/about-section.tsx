@@ -42,8 +42,8 @@ export function AboutSection() {
             <AccordionItem value="item-2">
               <AccordionTrigger>Skills</AccordionTrigger>
               <AccordionContent>
-                Interior Design 3D Models Renders Technical Drawings Branding
-                Custom furniture
+                Interior Design • 3D Models • Renders • Technical Drawings •
+                Branding • Custom Furniture
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
