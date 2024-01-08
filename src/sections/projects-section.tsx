@@ -4,7 +4,7 @@ import { projectConfig } from "@/config/project-config";
 export function ProjectSection() {
   return (
     <>
-      <section id="projects" className="container">
+      <section className="container">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {projectConfig.projectItems.map((item, index) => {
             return (

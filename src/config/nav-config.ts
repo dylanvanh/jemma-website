@@ -5,19 +5,19 @@ export const navBarConfig: NavBarConfig = {
   navItems: [
     {
       title: "Projects",
-      href: "#projects",
+      href: "/#projects",
     },
-    {
-      title: "About",
-      href: "#about",
-    },
+    // {
+    //   title: "About",
+    //   href: "#about",
+    // },
     {
       title: "Experience",
-      href: "#experience",
+      href: "/#experience",
     },
     {
       title: "Contact",
-      href: "#contact",
+      href: "/#contact",
     },
   ],
 };
@@ -26,22 +26,22 @@ export const navbDropDown: NavBarConfig = {
   navItems: [
     {
       title: "Projects",
-      href: "#projects",
+      href: "/#projects",
       icon: Wrench,
     },
-    {
-      title: "About",
-      href: "#about",
-      icon: Wrench,
-    },
+    // {
+    //   title: "About",
+    //   href: "#about",
+    //   icon: Wrench,
+    // },
     {
       title: "Experience",
-      href: "/experience",
+      href: "/#experience",
       icon: Wrench,
     },
     {
       title: "Contact",
-      href: "/contact",
+      href: "/#contact",
       icon: Wrench,
     },
   ],
