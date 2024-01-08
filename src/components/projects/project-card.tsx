@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
-import { ArrowRight, ArrowRightCircle, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 type PortfolioItem = {
   id: string;

@@ -8,6 +8,8 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
+    TELEGRAM_BOT_API_TOKEN: z.string(),
+    JEMMA_TELEGRAM_CHAT_ID: z.string(),
   },
 
   /**
@@ -25,6 +27,8 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    TELEGRAM_BOT_API_TOKEN: process.env.TELEGRAM_BOT_API_TOKEN,
+    JEMMA_TELEGRAM_CHAT_ID: process.env.JEMMA_TELEGRAM_CHAT_ID,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

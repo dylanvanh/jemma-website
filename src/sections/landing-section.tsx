@@ -9,6 +9,7 @@ export function LandingSection() {
           "container flex flex-col items-center px-4 py-10",
           "sm:px-6 sm:py-16",
           "md:-mt-16 md:h-[100vh] md:flex-row md:items-center md:justify-center md:px-10 md:py-20",
+          "min-h-screen",
         )}
       >
         <div className={cn("md:px-10", "lg:px-10")}>
