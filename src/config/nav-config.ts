@@ -5,7 +5,7 @@ export const navBarConfig: NavBarConfig = {
   navItems: [
     {
       title: "About",
-      href: "#about",
+      href: "/#about",
     },
     {
       title: "Projects",
@@ -26,7 +26,7 @@ export const navbDropDown: NavBarConfig = {
   navItems: [
     {
       title: "About",
-      href: "#about",
+      href: "/#about",
       icon: Wrench,
     },
     {
