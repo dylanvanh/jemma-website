@@ -1,5 +1,6 @@
 import Gallery from "@/components/projects/gallery";
 import { projectConfig } from "@/config/project-config";
+import FooterSection from "@/sections/footer-section";
 import { type ProjectItem } from "@/types/project";
 
 export default function Page({ params }: { params: { id: string } }) {
@@ -24,6 +25,7 @@ export default function Page({ params }: { params: { id: string } }) {
         </div>
         <Gallery id={params.id} />
       </div>
+      <FooterSection />
     </>
   );
 }
