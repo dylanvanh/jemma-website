@@ -12,6 +12,7 @@ export function LandingSection() {
         <div className="flex flex-col items-center justify-center">
           <h1
             className={cn(
+              "-mt-32",
               "font-heading",
               "mb-5 py-4 text-3xl",
               "sm:text-4xl",
