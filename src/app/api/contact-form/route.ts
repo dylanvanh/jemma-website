@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const formattedMessage = `You have a new message:\n${data.message}\n from: ${data.message}\n email: ${data.email}`;
+    const formattedMessage = `You have a new message:\n "${data.message}"\n from: ${data.name}\n email: ${data.email}`;
     await sendMessageToChat(formattedMessage);
   } catch (e) {
     console.error("Error sending telegram message:\n", e);
