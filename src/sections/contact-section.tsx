@@ -84,14 +84,14 @@ export function ContactSection() {
 
   return (
     <>
-      <section className="container my-20 flex w-2/3 flex-col items-center justify-center space-y-4 md:w-1/2">
-        <p className="text-gray-500 dark:text-gray-400 ">
+      <section className="container my-16 flex w-2/3 flex-col items-center justify-center md:w-1/2">
+        <p className="pb-5 text-slate-500 dark:text-slate-400">
           Have a question or want to work together?
         </p>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-8 text-center"
+            className="w-full space-y-5 text-center"
           >
             <FormField
               control={form.control}

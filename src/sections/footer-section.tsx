@@ -12,7 +12,7 @@ export default function FooterSection() {
             <a
               key={index}
               href={item.href}
-              className="mx-2 text-gray-600 sm:mx-5"
+              className="mx-2 text-slate-500 dark:text-slate-400 dark:hover:text-primary sm:mx-5"
             >
               {item.title}
             </a>
@@ -22,7 +22,7 @@ export default function FooterSection() {
       <div className="justify-cente mb-5 flex flex-row ">
         <a
           href="mailto:jemmawedgwood01@gmail.com"
-          className="mx-5 text-gray-600 hover:text-green-600"
+          className="mx-5 text-slate-500 hover:text-green-600 dark:text-slate-400 dark:hover:text-primary"
         >
           <Mail size={28} />
         </a>
@@ -30,12 +30,12 @@ export default function FooterSection() {
           href="https://www.linkedin.com/in/jemma-wedgwood/"
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-5 text-gray-600 hover:text-blue-600"
+          className="mx-5 text-slate-500 hover:text-blue-600 dark:text-ring dark:text-slate-400 dark:hover:text-primary"
         >
           <Linkedin size={28} />
         </a>
       </div>
-      <div className="text-xs text-gray-600 sm:text-sm">
+      <div className="text-xs text-slate-500 dark:text-ring dark:text-slate-400 sm:text-sm">
         © {currentYear} Jemma Wedgwood. All rights reserved.
       </div>
     </footer>

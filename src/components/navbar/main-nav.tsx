@@ -22,7 +22,7 @@ export function MainNav({ navItems }: MainNavProps) {
   return (
     <nav className="z-10 flex w-full justify-between px-12 py-5">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <span className="font-bold">Jemma Wedgwood</span>
+        <span className="font-bold">Portfolio</span>
       </Link>
       <div className={"hidden md:flex"}>
         {navItems.map((item, index) => {
