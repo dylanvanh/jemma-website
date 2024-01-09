@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { type NavItem } from "@/types/navbar";
-import { ModeToggle } from "@/components/mode-toggle";
+import { ThemeModeToggle } from "@/components/theme-mode-toggle";
 import { cn } from "@/lib/utils";
 import { NavDrawer } from "./nav-drawer";
 
@@ -22,7 +22,7 @@ export function MainNav({ navItems }: MainNavProps) {
   return (
     <nav className="z-10 flex w-full justify-between px-12 py-5">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <span className="font-bold">Jemma Wedgwood</span>
+        <span className="font-bold">Portfolio</span>
       </Link>
       <div className={"hidden md:flex"}>
         {navItems.map((item, index) => {
@@ -42,7 +42,7 @@ export function MainNav({ navItems }: MainNavProps) {
       </div>
       <div className={"hidden md:flex"}>
         <div className={"px-5"}>
-          <ModeToggle />
+          <ThemeModeToggle />
         </div>
       </div>
       <div className={"ml-auto hover:cursor-pointer md:hidden"}>

@@ -14,7 +14,7 @@ const HorizontalTimeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="absolute -top-4 left-14 z-50 w-8 text-blue-500"
+              className="absolute -top-4 left-14 z-50 w-8"
             >
               <path
                 fillRule="evenodd"
@@ -27,14 +27,14 @@ const HorizontalTimeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
                 <AvatarImage src={item.logoUrl} alt="Company Logo" />
               </Avatar>
               <div className="ml-6">
-                <h4 className="font-bold text-blue-500">{item.title}</h4>
-                <p className="mt-2 text-sm font-bold text-gray-900">
+                <h4 className="font-bold">{item.title}</h4>
+                <p className="mt-2 text-sm font-semibold dark:text-slate-200">
                   {item.jobType}
                 </p>
-                <p className="mt-2 w-28 text-sm text-gray-500">
+                <p className="font mt-2 w-28 text-sm dark:text-slate-400">
                   {item.description}
                 </p>
-                <span className="mt-1 block text-sm font-semibold text-blue-500">
+                <span className="mt-1 block text-sm font-semibold">
                   {item.period}
                 </span>
               </div>

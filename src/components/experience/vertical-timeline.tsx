@@ -8,10 +8,7 @@ const VerticalTimeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       id="experience"
-      className={cn(
-        "flex items-center justify-center bg-white px-6",
-        className,
-      )}
+      className={cn("flex items-center justify-center px-6", className)}
     >
       <div className="space-y-6 border-l-2 border-dashed">
         {[...experienceConfig.experienceItems].reverse().map((item, index) => (
@@ -20,7 +17,7 @@ const VerticalTimeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="absolute -top-0.5 z-10 -ml-3.5 h-7 w-7 rounded-full text-blue-500"
+              className="absolute -top-0.5 z-10 -ml-3.5 h-7 w-7 rounded-full "
             >
               <path
                 fillRule="evenodd"
@@ -30,12 +27,14 @@ const VerticalTimeline: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
             </svg>
             <div className="flex flex-row items-start justify-start">
               <div className="ml-6 flex-grow">
-                <h4 className="font-bold text-blue-500">{item.title}</h4>
-                <p className="mt-2 text-sm font-bold text-gray-900">
+                <h4 className="font-bold">{item.title}</h4>
+                <p className="mt-2 text-sm font-semibold dark:text-slate-200">
                   {item.jobType}
                 </p>
-                <p className="mt-2 text-sm text-gray-500">{item.description}</p>
-                <span className="mt-1 block text-sm font-semibold text-blue-500">
+                <p className="mt-2 text-sm dark:text-slate-400">
+                  {item.description}
+                </p>
+                <span className="mt-1 block text-sm font-semibold">
                   {item.period}
                 </span>
               </div>

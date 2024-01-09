@@ -33,13 +33,13 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         className={cn("", className)}
         {...props}
       >
-        <div className="group relative hover:cursor-pointer">
+        <div className="group relative  hover:cursor-pointer">
           <div
             className="absolute inset-0 bg-black bg-opacity-50 opacity-0 
             transition-opacity duration-300 ease-in-out group-hover:opacity-100"
           >
             <div className="flex h-full items-center justify-center">
-              <div className="text-center text-white">
+              <div className="bg:bg-background text-center text-white">
                 <p className="text-lg font-bold">{portfolioItem.title}</p>
                 <p>{portfolioItem.designType}</p>
               </div>
@@ -58,7 +58,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
           />
 
           <div className="absolute bottom-4 right-4 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
-            <div className="rounded-full bg-white p-2">
+            <div className="rounded-full bg-background p-2">
               <ArrowUpRight />
             </div>
           </div>

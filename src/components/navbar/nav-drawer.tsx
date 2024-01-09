@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import { ThemeModeToggle } from "../theme-mode-toggle";
 
 interface SideNavProps {
   navItems: NavItem[];
@@ -30,9 +30,9 @@ export function NavDrawer({ navItems }: SideNavProps) {
       </SheetTrigger>
       <SheetContent side={"right"}>
         <SheetHeader>
-          <SheetTitle className={"flex px-24"}>Jemma Wedgwood</SheetTitle>
+          <SheetTitle className={"mx-auto"}>Portfolio</SheetTitle>
         </SheetHeader>
-        <div className={"flex-col"}>
+        <div>
           {navItems.map((item, index) => {
             return (
               <Link
@@ -42,18 +42,20 @@ export function NavDrawer({ navItems }: SideNavProps) {
               >
                 <span
                   className={cn(
+                    "items-center justify-center",
                     "my-5 p-5",
                     "group flex rounded-md hover:bg-accent hover:text-accent-foreground",
                     path.includes(item.href) ? "bg-accent" : "transparent",
                   )}
                 >
-                  <span className={"flex items-center justify-start"}>
-                    {item.title}
-                  </span>
+                  <span>{item.title}</span>
                 </span>
               </Link>
             );
           })}
+          <div className="ml-5 flex items-center justify-center space-x-4">
+            <ThemeModeToggle useSwitcherView={true} />
+          </div>
         </div>
       </SheetContent>
     </Sheet>
