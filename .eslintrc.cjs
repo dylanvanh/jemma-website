@@ -10,6 +10,14 @@ const config = {
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
   ],
+  overrides: [
+    {
+      files: ["*.tsx", "*.ts"], // Or any specific pattern that matches your Next.js pages
+      rules: {
+        "@typescript-eslint/require-await": "off", // Turn off require-await
+      },
+    },
+  ],
   rules: {
     // These opinionated rules are enabled in stylistic-type-checked above.
     // Feel free to reconfigure them to your own preference.
@@ -24,12 +32,6 @@ const config = {
       },
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-    "@typescript-eslint/no-misused-promises": [
-      2,
-      {
-        checksVoidReturn: { attributes: false },
-      },
-    ],
   },
 };
 
