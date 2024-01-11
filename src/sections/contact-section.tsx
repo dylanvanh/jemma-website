@@ -90,7 +90,7 @@ export function ContactSection() {
         </p>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={() => form.handleSubmit(onSubmit)}
             className="w-full space-y-5 text-center"
           >
             <FormField
