@@ -11,7 +11,7 @@ export function AboutSection() {
   return (
     <>
       <section className="container my-20 flex flex-col items-center justify-center md:flex-row">
-        <div className="md:mr-20  md:px-10 lg:px-10">
+        <div className="md:mr-20 md:px-10 lg:px-10">
           <Avatar
             className={cn(
               "mx-auto mb-10",
@@ -24,7 +24,7 @@ export function AboutSection() {
             <AvatarFallback>Jemma</AvatarFallback>
           </Avatar>
         </div>
-        <div className="sm:w-2/3 md:w-1/3">
+        <div className="w-2/3 sm:w-2/3 md:w-1/3">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>Bio</AccordionTrigger>

@@ -1,3 +1,4 @@
+import BackToTopButton from "@/components/back-to-top-button";
 import Splitter from "@/components/splitter";
 import { AboutSection } from "@/sections/about-section";
 import { ContactSection } from "@/sections/contact-section";
@@ -21,6 +22,7 @@ export default function CombinedSections() {
       <ExperienceSection />
       <Splitter className="mb-12 pt-5" sectionTitle="Contact me" id="contact" />
       <ContactSection />
+      <BackToTopButton />
     </>
   );
 }

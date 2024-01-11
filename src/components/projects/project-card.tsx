@@ -33,7 +33,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
         className={cn("", className)}
         {...props}
       >
-        <div className="group relative  hover:cursor-pointer">
+        <div className="group relative hover:cursor-pointer">
           <div
             className="absolute inset-0 bg-black bg-opacity-50 opacity-0 
             transition-opacity duration-300 ease-in-out group-hover:opacity-100"
