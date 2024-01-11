@@ -53,6 +53,8 @@ export function ContactSection() {
   async function onSubmit(contactFormData: ContactFormData) {
     setIsSubmitting(true);
 
+    event?.preventDefault();
+
     try {
       const response = await fetch("/api/contact-form", {
         method: "POST",
@@ -90,7 +92,7 @@ export function ContactSection() {
         </p>
         <Form {...form}>
           <form
-            onSubmit={() => form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-5 text-center"
           >
             <FormField
