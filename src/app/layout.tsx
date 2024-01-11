@@ -21,16 +21,28 @@ const fontHeading = localFont({
   variable: "--font-heading",
 });
 
+const titleDefault = "Jemma Wedgwood - Portfolio Website";
+const descriptionDefault = "Jemma Wedgwood Portfolio & Resume";
+
 export const metadata: Metadata = {
   title: {
-    default: "Jemma Wedgwood Portfolio Website",
+    default: titleDefault,
     template: "%s - Project Gallery | Jemma Wedwood",
   },
-  description: "Interior Designer Portfolio Website",
+  description: descriptionDefault,
   twitter: {
     card: "summary_large_image",
   },
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  openGraph: {
+    title: titleDefault,
+    description: descriptionDefault,
+    images: [
+      {
+        url: "/thumbnail.png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
