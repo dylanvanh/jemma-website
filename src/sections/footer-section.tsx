@@ -1,5 +1,6 @@
 import { navBarConfig } from "@/config/nav-config";
 import { Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
 
 export default function FooterSection() {
   const currentYear = new Date().getFullYear();
@@ -20,20 +21,22 @@ export default function FooterSection() {
         })}
       </div>
       <div className="justify-cente mb-5 flex flex-row ">
-        <a
+        <Link
           href="mailto:jemmawedgwood01@gmail.com"
           className="mx-5 text-slate-500 hover:text-green-600 dark:text-slate-400 dark:hover:text-primary"
+          aria-label="Open Mail"
         >
           <Mail size={28} />
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://www.linkedin.com/in/jemma-wedgwood/"
           target="_blank"
+          aria-label="Linkedin Link"
           rel="noopener noreferrer"
           className="mx-5 text-slate-500 hover:text-blue-600 dark:text-ring dark:text-slate-400 dark:hover:text-primary"
         >
           <Linkedin size={28} />
-        </a>
+        </Link>
       </div>
       <div className="text-xs text-slate-500 dark:text-ring dark:text-slate-400 sm:text-sm">
         © {currentYear} Jemma Wedgwood. All rights reserved.

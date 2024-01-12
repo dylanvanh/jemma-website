@@ -14,13 +14,16 @@ export function AboutSection() {
         <div className="md:mr-20 md:px-10 lg:px-10">
           <Avatar
             className={cn(
-              "mx-auto mb-10",
-              "h-56 w-56",
+              "mx-auto mb-10 h-56 w-56",
               "md:h-56 md:w-56",
               "lg:h-96 lg:w-96",
             )}
           >
-            <AvatarImage src="/jemma-profile.webp" />
+            <AvatarImage
+              className="h-auto w-auto"
+              src="/jemma-profile.webp"
+              alt="Jemma Wedgwood Profile Photo"
+            />
             <AvatarFallback>Jemma</AvatarFallback>
           </Avatar>
         </div>

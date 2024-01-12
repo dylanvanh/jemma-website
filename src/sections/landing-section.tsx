@@ -36,7 +36,11 @@ export function LandingSection() {
           </h2>
         </div>
         <div className="animate-bounce">
-          <Link href="#about">
+          <Link
+            href="#about"
+            title="Go to About Section"
+            aria-label="Go to About Section"
+          >
             <ChevronDown className="h-12 w-12 text-gray-600 hover:cursor-pointer hover:text-gray-200 dark:text-gray-400" />
           </Link>
         </div>
