@@ -48,7 +48,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
 
           <Image
             src={portfolioItem.previewImageUrl}
-            alt="Interior"
+            alt="Project card preview"
             width={400}
             height={400}
             className="h-auto w-full  object-cover"

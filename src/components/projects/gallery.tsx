@@ -7,6 +7,7 @@ import CustomCarousel from "./custom-carousel";
 import MobileImageList from "./mobile-image-list";
 import GridGallery from "./grid-gallery";
 import { Button } from "../ui/button";
+import SwitchProjectButton from "./switch-project-button";
 
 interface GalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   id: string;
@@ -42,11 +43,33 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
         !getIsScreenMobile(screenWidth) ? (
           <CustomCarousel imageUrls={imageUrls} imageQuality={50} />
         ) : (
-          <MobileImageList imageUrls={imageUrls} imageQuality={30} />
+          <div>
+            <div className="flex flex-row items-center justify-center space-x-6">
+              <SwitchProjectButton
+                currentProjectIndex={configIndex}
+                direction="backwards"
+              />
+              <SwitchProjectButton
+                currentProjectIndex={configIndex}
+                direction="forward"
+              />
+            </div>
+            <MobileImageList imageUrls={imageUrls} imageQuality={30} />
+          </div>
         )
       ) : (
         <GridGallery imageUrls={imageUrls} imageQuality={50} className="mb-4" />
       )}
+      <div className="hidden flex-row items-center justify-center space-x-6 md:flex">
+        <SwitchProjectButton
+          currentProjectIndex={configIndex}
+          direction="backwards"
+        />
+        <SwitchProjectButton
+          currentProjectIndex={configIndex}
+          direction="forward"
+        />
+      </div>
     </div>
   );
 };

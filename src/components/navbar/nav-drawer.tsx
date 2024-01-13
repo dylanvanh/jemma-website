@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 import { type NavItem } from "@/types/navbar";
 import { cn } from "@/lib/utils";
@@ -20,7 +19,6 @@ interface SideNavProps {
 }
 
 export function NavDrawer({ navItems }: SideNavProps) {
-  const path = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -29,9 +27,6 @@ export function NavDrawer({ navItems }: SideNavProps) {
         <Menu className="h-6 w-6" />
       </SheetTrigger>
       <SheetContent side={"right"}>
-        <SheetHeader>
-          <SheetTitle className={"mx-auto"}>Portfolio</SheetTitle>
-        </SheetHeader>
         <div>
           {navItems.map((item, index) => {
             return (
@@ -45,7 +40,6 @@ export function NavDrawer({ navItems }: SideNavProps) {
                     "items-center justify-center",
                     "my-5 p-5",
                     "group flex rounded-md hover:bg-accent hover:text-accent-foreground",
-                    path.includes(item.href) ? "bg-accent" : "transparent",
                   )}
                 >
                   <span>{item.title}</span>
