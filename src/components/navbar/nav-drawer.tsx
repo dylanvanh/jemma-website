@@ -1,16 +1,10 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
-import { type NavItem } from "@/types/navbar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { type NavItem } from "@/types/navbar";
 import { Menu } from "lucide-react";
 import { ThemeModeToggle } from "../theme-mode-toggle";
 

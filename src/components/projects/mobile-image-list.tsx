@@ -33,7 +33,7 @@ const MobileImageList: React.FC<MobileImageListProps> = ({
   return (
     <>
       {getIsScreenMobile(screenWidth) && (
-        <div className={cn("mb-5 p-5 ", className)}>
+        <div className={cn("p-5", className)}>
           {Array.from({ length: imageUrls.length }).map((_, index) => (
             <Image
               key={index}

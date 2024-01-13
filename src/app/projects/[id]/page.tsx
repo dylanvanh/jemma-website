@@ -4,6 +4,7 @@ import { projectConfig } from "@/config/project-config";
 import { type ProjectItem } from "@/types/project";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
+import BackToTopButton from "@/components/back-to-top-button";
 
 const Gallery = dynamic(() => import("@/components/projects/gallery"), {
   ssr: false,
@@ -69,6 +70,7 @@ export default function Page({ params }: PageProps) {
         </div>
         <Gallery id={params.id} />
       </div>
+      <BackToTopButton />
     </>
   );
 }
