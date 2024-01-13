@@ -13,7 +13,7 @@ export default function FooterSection() {
             <a
               key={index}
               href={item.href}
-              className="mx-2 text-slate-500 dark:text-slate-400 dark:hover:text-primary sm:mx-5"
+              className="mx-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-primary sm:mx-5"
             >
               {item.title}
             </a>
