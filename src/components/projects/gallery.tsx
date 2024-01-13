@@ -36,7 +36,7 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center pb-14",
+        "flex flex-col items-center justify-center pb-2 md:pb-14",
         className,
       )}
     >
