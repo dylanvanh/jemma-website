@@ -7,7 +7,7 @@ import CustomCarousel from "./custom-carousel";
 import MobileImageList from "./mobile-image-list";
 import GridGallery from "./grid-gallery";
 import { Button } from "../ui/button";
-import SwitchProjectButton from "./switch-project-button";
+import SwitchProjectButton, { doesProjectExist } from "./switch-project-button";
 
 interface GalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   id: string;
@@ -30,46 +30,86 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
     };
   }, []);
 
+  const isForwardButtonVisible = doesProjectExist(configIndex, "forward");
+  const isBackwardButtonVisible = doesProjectExist(configIndex, "backward");
+
   return (
-    <div className={cn("pb-14", className)}>
-      {!getIsScreenMobile(screenWidth) && (
-        <div className="mb-3 flex flex-row justify-center">
-          <Button onClick={() => setIsCarouselShowing(!isCarouselShowing)}>
-            Toggle Gallery View
-          </Button>
-        </div>
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center pb-14",
+        className,
       )}
-      {isCarouselShowing ? (
-        !getIsScreenMobile(screenWidth) ? (
-          <CustomCarousel imageUrls={imageUrls} imageQuality={50} />
-        ) : (
-          <div>
-            <div className="flex flex-row items-center justify-center space-x-6">
+    >
+      {!getIsScreenMobile(screenWidth) && (
+        <>
+          <div className="mb-4">
+            <Button
+              className="w-44"
+              onClick={() => setIsCarouselShowing(!isCarouselShowing)}
+            >
+              Toggle Gallery View
+            </Button>
+          </div>
+          {isCarouselShowing ? (
+            <CustomCarousel imageUrls={imageUrls} imageQuality={50} />
+          ) : (
+            <GridGallery
+              imageUrls={imageUrls}
+              imageQuality={50}
+              className="mb-8"
+            />
+          )}
+          <div
+            className={cn(
+              "flex flex-col items-center justify-center md:flex-row",
+              {
+                "space-y-4 md:space-x-8 md:space-y-0":
+                  isBackwardButtonVisible && isForwardButtonVisible,
+              },
+            )}
+          >
+            {isBackwardButtonVisible && (
               <SwitchProjectButton
                 currentProjectIndex={configIndex}
-                direction="backwards"
+                direction="backward"
               />
+            )}
+            {isForwardButtonVisible && (
               <SwitchProjectButton
                 currentProjectIndex={configIndex}
                 direction="forward"
               />
-            </div>
-            <MobileImageList imageUrls={imageUrls} imageQuality={30} />
+            )}
           </div>
-        )
-      ) : (
-        <GridGallery imageUrls={imageUrls} imageQuality={50} className="mb-4" />
+        </>
       )}
-      <div className="hidden flex-row items-center justify-center space-x-6 md:flex">
-        <SwitchProjectButton
-          currentProjectIndex={configIndex}
-          direction="backwards"
-        />
-        <SwitchProjectButton
-          currentProjectIndex={configIndex}
-          direction="forward"
-        />
-      </div>
+      {getIsScreenMobile(screenWidth) && (
+        <>
+          <div
+            className={cn(
+              "flex flex-col items-center justify-center md:flex-row",
+              {
+                "space-y-4 md:space-x-8 md:space-y-0":
+                  isBackwardButtonVisible && isForwardButtonVisible,
+              },
+            )}
+          >
+            {isBackwardButtonVisible && (
+              <SwitchProjectButton
+                currentProjectIndex={configIndex}
+                direction="backward"
+              />
+            )}
+            {isForwardButtonVisible && (
+              <SwitchProjectButton
+                currentProjectIndex={configIndex}
+                direction="forward"
+              />
+            )}
+          </div>
+          <MobileImageList imageUrls={imageUrls} imageQuality={30} />
+        </>
+      )}
     </div>
   );
 };
