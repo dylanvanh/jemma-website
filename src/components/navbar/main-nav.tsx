@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { type NavItem } from "@/types/navbar";
-import { NavDrawer } from "./nav-drawer";
+import Image from "next/image";
+import Link from "next/link";
 import { ThemeModeToggle } from "../theme-mode-toggle";
+import { NavDrawer } from "./nav-drawer";
 
 interface MainNavProps {
   navItems: NavItem[];
@@ -17,7 +18,7 @@ export function MainNav({ navItems }: MainNavProps) {
   return (
     <nav className="z-10 flex w-full justify-between px-12 py-5">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <span className="font-bold">Portfolio</span>
+        <Image src="/jw-logo.png" alt="JW logo" width={40} height={40} />
       </Link>
       <div className={"hidden md:flex"}>
         {navItems.map((item, index) => {
