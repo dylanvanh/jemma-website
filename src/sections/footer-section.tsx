@@ -7,7 +7,7 @@ export default function FooterSection() {
 
   return (
     <footer className="container flex flex-col items-center justify-center py-5">
-      <div className="mb-5 flex flex-row">
+      <div className="mb-5 flex flex-col items-center justify-center space-y-2 md:flex-row">
         {navBarConfig.navItems.map((item, index) => {
           return (
             <a
