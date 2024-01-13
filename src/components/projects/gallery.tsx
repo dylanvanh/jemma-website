@@ -31,7 +31,7 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
   }, []);
 
   return (
-    <div className={cn("", className)}>
+    <div className={cn("pb-14", className)}>
       {!getIsScreenMobile(screenWidth) && (
         <div className="mb-3 flex flex-row justify-center">
           <Button onClick={() => setIsCarouselShowing(!isCarouselShowing)}>

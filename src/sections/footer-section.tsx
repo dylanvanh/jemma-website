@@ -6,7 +6,7 @@ export default function FooterSection() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="container flex flex-col items-center justify-center py-5">
+    <footer className="container flex flex-col items-center justify-center pb-14">
       <div className="mb-5 flex flex-col items-center justify-center space-y-2 md:flex-row">
         {navBarConfig.navItems.map((item, index) => {
           return (
