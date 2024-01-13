@@ -1,20 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
 import { type NavItem } from "@/types/navbar";
-import { ThemeModeToggle } from "@/components/theme-mode-toggle";
-import { cn } from "@/lib/utils";
 import { NavDrawer } from "./nav-drawer";
+import { ThemeModeToggle } from "../theme-mode-toggle";
 
 interface MainNavProps {
   navItems: NavItem[];
 }
 
 export function MainNav({ navItems }: MainNavProps) {
-  const path = usePathname();
-
   if (!navItems?.length) {
     return null;
   }
@@ -29,10 +24,9 @@ export function MainNav({ navItems }: MainNavProps) {
           return (
             <Link key={index} href={item.href}>
               <span
-                className={cn(
-                  "flex rounded-md px-3 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground",
-                  path.includes(item.href) ? "bg-accent" : "transparent",
-                )}
+                className={
+                  "flex rounded-md px-3 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
+                }
               >
                 <span>{item.title}</span>
               </span>
