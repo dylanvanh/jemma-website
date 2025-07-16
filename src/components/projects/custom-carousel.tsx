@@ -52,20 +52,21 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({
         <CarouselContent>
           {Array.from({ length: imageUrls.length }).map((_, index) => (
             <CarouselItem key={index}>
-              <Image
-                onClick={() => console.log(index)}
-                src={imageUrls[index]!}
-                alt="Project Gallery Image"
-                width={2000}
-                height={2000}
-                quality={imageQuality}
-                priority
-                className="h-auto w-full"
-                style={{ maxHeight: "70vh", objectFit: "contain" }}
-                placeholder={`data:image/svg+xml;base64,${toBase64(
-                  createImagePlaceholderShimmer(400, 400),
-                )}`}
-              />
+              <div className="flex items-center justify-center min-h-[400px] max-h-[90vh]">
+                <Image
+                  onClick={() => console.log(index)}
+                  src={imageUrls[index]!}
+                  alt="Project Gallery Image"
+                  width={2000}
+                  height={2000}
+                  quality={imageQuality}
+                  priority
+                  className="h-auto w-auto max-h-full max-w-full object-contain"
+                  placeholder={`data:image/svg+xml;base64,${toBase64(
+                    createImagePlaceholderShimmer(400, 400),
+                  )}`}
+                />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
