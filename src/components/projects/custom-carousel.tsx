@@ -60,6 +60,8 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({
                 height={2000}
                 quality={imageQuality}
                 priority
+                className="h-auto w-full"
+                style={{ maxHeight: "70vh", objectFit: "contain" }}
                 placeholder={`data:image/svg+xml;base64,${toBase64(
                   createImagePlaceholderShimmer(400, 400),
                 )}`}

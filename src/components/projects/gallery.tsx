@@ -36,8 +36,16 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
     };
   }, []);
 
+  // Use a minimal loading div if client hasn't mounted yet
   if (!isClient) {
-    return <div>Loading...</div>;
+    return (
+      <div className={cn(
+        "flex flex-col items-center justify-center pb-2 md:pb-14 min-h-[200px]",
+        className,
+      )}>
+        <div className="text-sm text-muted-foreground">Loading gallery...</div>
+      </div>
+    );
   }
 
   const isForwardButtonVisible = doesProjectExist(configIndex, "forward");
