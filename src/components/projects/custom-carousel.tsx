@@ -56,12 +56,14 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({
                 onClick={() => console.log(index)}
                 src={imageUrls[index]!}
                 alt="Project Gallery Image"
-                width={2000}
-                height={2000}
+                width={1200}
+                height={800}
                 quality={imageQuality}
                 priority
+                className="w-full h-auto"
+                style={{ minHeight: "400px" }}
                 placeholder={`data:image/svg+xml;base64,${toBase64(
-                  createImagePlaceholderShimmer(400, 400),
+                  createImagePlaceholderShimmer(1200, 800),
                 )}`}
               />
             </CarouselItem>
