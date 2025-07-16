@@ -14,21 +14,31 @@ interface GalleryProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(0);
   const [isCarouselShowing, setIsCarouselShowing] = useState(true);
+  const [isClient, setIsClient] = useState(false);
 
   const configIndex: number = Number(id) - 1;
   const imageUrls: string[] =
     projectConfig.projectItems[configIndex]!.imageListUrls;
 
   useEffect(() => {
+    setIsClient(true);
     const handleResize = () => setScreenWidth(window.innerWidth);
+    
+    // Set initial screen width
+    setScreenWidth(window.innerWidth);
+    
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  if (!isClient) {
+    return <div>Loading...</div>;
+  }
 
   const isForwardButtonVisible = doesProjectExist(configIndex, "forward");
   const isBackwardButtonVisible = doesProjectExist(configIndex, "backward");

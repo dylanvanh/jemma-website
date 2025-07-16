@@ -6,22 +6,21 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import BackToTopButton from "@/components/back-to-top-button";
 
-const Gallery = dynamic(() => import("@/components/projects/gallery"), {
-  ssr: false,
-});
+const Gallery = dynamic(() => import("@/components/projects/gallery"));
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
-}): Metadata {
-  const projectItem = getProjectItemFromParams(params.id);
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const projectItem = getProjectItemFromParams(resolvedParams.id);
 
   return {
     title: projectItem.title,
@@ -54,8 +53,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function Page({ params }: PageProps) {
-  const projectItem: ProjectItem = getProjectItemFromParams(params.id);
+export default async function Page({ params }: PageProps) {
+  const resolvedParams = await params;
+  const projectItem: ProjectItem = getProjectItemFromParams(resolvedParams.id);
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function Page({ params }: PageProps) {
             {projectItem?.description}
           </p>
         </div>
-        <Gallery id={params.id} />
+        <Gallery id={resolvedParams.id} />
       </div>
       <BackToTopButton />
     </>
