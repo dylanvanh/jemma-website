@@ -5,14 +5,14 @@ import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import Image from "next/image";
 
-const skills = [
+const SKILLS = [
   "Interior Design",
   "3D Modeling",
   "Renders",
   "Technical Drawings",
   "Branding",
   "Custom Furniture",
-];
+] as const;
 
 export function AboutSection() {
   return (
@@ -83,7 +83,7 @@ export function AboutSection() {
               Expertise
             </p>
             <div className="flex flex-wrap gap-2">
-              {skills.map((skill, index) => (
+              {SKILLS.map((skill, index) => (
                 <Badge
                   key={skill}
                   variant="secondary"

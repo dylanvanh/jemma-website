@@ -11,7 +11,7 @@ export default function BackToTopButton() {
     const checkScrollTop = () => {
       setShowButton(window.scrollY > 400);
     };
-    window.addEventListener("scroll", checkScrollTop);
+    window.addEventListener("scroll", checkScrollTop, { passive: true });
     return () => window.removeEventListener("scroll", checkScrollTop);
   }, []);
 

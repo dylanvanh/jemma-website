@@ -1,3 +1,4 @@
+import { after } from "next/server";
 import { sendMessageToChat } from "@/lib/send-telegram-message";
 import { type ContactFormData } from "@/types/contact-form";
 
@@ -10,12 +11,15 @@ export async function POST(request: Request) {
     });
   }
 
-  try {
-    const formattedMessage = `You have a new message:\n "${data.message}"\n from: ${data.name}\n email: ${data.email}`;
-    await sendMessageToChat(formattedMessage);
-  } catch (e) {
-    console.error("Error sending telegram message:\n", e);
-    return new Response(null, { status: 500 });
-  }
+  const formattedMessage = `You have a new message:\n "${data.message}"\n from: ${data.name}\n email: ${data.email}`;
+
+  after(async () => {
+    try {
+      await sendMessageToChat(formattedMessage);
+    } catch (e) {
+      console.error("Error sending telegram message:\n", e);
+    }
+  });
+
   return new Response(null, { status: 200 });
 }
