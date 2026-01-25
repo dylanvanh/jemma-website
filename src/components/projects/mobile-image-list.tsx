@@ -1,36 +1,22 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import { Button } from "../ui/button";
-import { XCircle } from "lucide-react";
-import {
-  cn,
-  createImagePlaceholderShimmer,
-  getIsScreenMobile,
-  toBase64,
-} from "@/lib/utils";
+import { X } from "lucide-react";
+import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
 
 interface MobileImageListProps extends React.HTMLAttributes<HTMLDivElement> {
   imageUrls: string[];
   imageQuality: number;
 }
 
-const MobileImageList: React.FC<MobileImageListProps> = ({
+export default function MobileImageList({
   imageUrls,
   imageQuality,
   className,
-}) => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+}: MobileImageListProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
-
-  useEffect(() => {
-    const handleResize = () => setScreenWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   const openModal = (url: string) => {
     setSelectedImageUrl(url);
@@ -41,62 +27,64 @@ const MobileImageList: React.FC<MobileImageListProps> = ({
     setIsModalOpen(false);
   };
 
-  const handleModalClick = (e: React.MouseEvent) => {
-    if (e.currentTarget === e.target) {
-      closeModal();
-    }
-  };
-
   return (
     <>
-      {getIsScreenMobile(screenWidth) && (
-        <div className={cn("p-5", className)}>
-          {imageUrls.map((url, index) => (
-            <div
-              key={index}
-              className="mb-5 cursor-pointer px-5"
-              onClick={() => openModal(url)}
-            >
-              <Image
-                src={url}
-                alt={`Project Gallery Image ${index + 1}`}
-                width={800}
-                height={800}
-                quality={imageQuality}
-                placeholder={`data:image/svg+xml;base64,${toBase64(
-                  createImagePlaceholderShimmer(400, 400),
-                )}`}
-                priority
-              />
-            </div>
-          ))}
-        </div>
-      )}
+      <div className={cn("space-y-4", className)}>
+        {imageUrls.map((url, index) => (
+          <div
+            key={index}
+            className="relative aspect-[4/3] cursor-pointer overflow-hidden bg-muted"
+            onClick={() => openModal(url)}
+          >
+            <Image
+              src={url}
+              alt={`Project Gallery Image ${index + 1}`}
+              fill
+              className="object-cover"
+              quality={imageQuality}
+              sizes="100vw"
+              placeholder={`data:image/svg+xml;base64,${toBase64(
+                createImagePlaceholderShimmer(400, 300),
+              )}`}
+              priority={index < 3}
+            />
+          </div>
+        ))}
+      </div>
+
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
-          onClick={handleModalClick}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm"
+          onClick={closeModal}
         >
-          <div className="relative max-h-full max-w-2xl overflow-auto md:max-w-4xl lg:max-w-6xl">
-            <Button
-              onClick={closeModal}
-              className="absolute bottom-5 left-1/2 -translate-x-1/2 transform rounded-full bg-black bg-opacity-50 p-2 text-white shadow-lg focus:outline-none"
-            >
-              <XCircle />
-            </Button>
+          <button
+            onClick={closeModal}
+            className={cn(
+              "absolute right-4 top-4 z-10",
+              "flex size-10 items-center justify-center rounded-full",
+              "border border-border bg-background/80 text-muted-foreground",
+            )}
+            aria-label="Close modal"
+          >
+            <X className="size-5" />
+          </button>
+
+          <div
+            className="relative max-h-[90vh] max-w-[95vw]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Image
               src={selectedImageUrl}
               alt="Enlarged Gallery Image"
-              layout="responsive"
               width={800}
-              height={800}
-              quality={imageQuality}
+              height={600}
+              className="max-h-[90vh] w-auto object-contain"
+              quality={80}
+              priority
             />
           </div>
         </div>
       )}
     </>
   );
-};
-
-export default MobileImageList;
+}

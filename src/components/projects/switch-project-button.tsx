@@ -1,62 +1,65 @@
-import { cn } from "@/lib/utils";
+"use client";
+
 import { projectConfig } from "@/config/project-config";
-import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 
-interface SwitchProjectButtonProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  currentProjectIndex: number;
-  direction: "forward" | "backward";
+interface SwitchProjectButtonProps {
+  currentProjectId: string;
+  className?: string;
 }
 
-export function doesProjectExist(
-  currentProjectIndex: number,
-  direction: "forward" | "backward",
-): boolean {
-  if (direction === "backward") {
-    return currentProjectIndex > 0;
-  }
-  return currentProjectIndex < projectConfig.projectItems.length - 1;
-}
-
-const SwitchProjectButton: React.FC<SwitchProjectButtonProps> = ({
-  currentProjectIndex,
-  direction,
+export default function SwitchProjectButton({
+  currentProjectId,
   className,
-}) => {
-  function generateHref(): string {
-    const baseUrl = "/projects/";
-    const projectPageId = currentProjectIndex + 1;
+}: SwitchProjectButtonProps) {
+  const currentIndex = projectConfig.projectItems.findIndex(
+    (item) => item.id === currentProjectId,
+  );
 
-    if (direction === "backward") {
-      return baseUrl + (projectPageId - 1);
-    }
-    return baseUrl + (projectPageId + 1);
-  }
+  const prevProject =
+    currentIndex > 0 ? projectConfig.projectItems[currentIndex - 1] : null;
+  const nextProject =
+    currentIndex < projectConfig.projectItems.length - 1
+      ? projectConfig.projectItems[currentIndex + 1]
+      : null;
 
   return (
-    <div className={cn("flex flex-row items-center justify-evenly", className)}>
-      {doesProjectExist(currentProjectIndex, direction) && (
-        <Link href={generateHref()}>
-          <Button className="w-44">
-            {direction === "forward" ? (
-              <>
-                Next Project
-                <ArrowBigRight />
-              </>
-            ) : (
-              <>
-                <ArrowBigLeft />
-                Previous Project
-              </>
-            )}
-          </Button>
+    <div className={cn("flex w-full items-center justify-between gap-4", className)}>
+      {prevProject ? (
+        <Link
+          href={`/projects/${prevProject.id}`}
+          className="group flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+          <div className="text-left">
+            <p className="text-xs uppercase tracking-[0.1em]">Previous</p>
+            <p className="font-heading text-sm font-medium text-foreground">
+              {prevProject.title}
+            </p>
+          </div>
         </Link>
+      ) : (
+        <div />
+      )}
+
+      {nextProject ? (
+        <Link
+          href={`/projects/${nextProject.id}`}
+          className="group flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <div className="text-right">
+            <p className="text-xs uppercase tracking-[0.1em]">Next</p>
+            <p className="font-heading text-sm font-medium text-foreground">
+              {nextProject.title}
+            </p>
+          </div>
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+        </Link>
+      ) : (
+        <div />
       )}
     </div>
   );
-};
-
-SwitchProjectButton.displayName = "SwitchProjectButton";
-export default SwitchProjectButton;
+}

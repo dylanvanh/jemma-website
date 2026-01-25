@@ -2,20 +2,19 @@
 
 import { projectConfig } from "@/config/project-config";
 import { cn, getIsScreenMobile } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CustomCarousel from "./custom-carousel";
 import MobileImageList from "./mobile-image-list";
 import GridGallery from "./grid-gallery";
-import { Button } from "../ui/button";
-import SwitchProjectButton, { doesProjectExist } from "./switch-project-button";
+import { LayoutGrid, Rows3 } from "lucide-react";
 
 interface GalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   id: string;
 }
 
-const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
+export default function Gallery({ id, className }: GalleryProps) {
   const [screenWidth, setScreenWidth] = useState(0);
-  const [isCarouselShowing, setIsCarouselShowing] = useState(true);
+  const [isCarouselShowing, setIsCarouselShowing] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
   const configIndex: number = Number(id) - 1;
@@ -25,111 +24,68 @@ const Gallery: React.FC<GalleryProps> = ({ id, className }) => {
   useEffect(() => {
     setIsClient(true);
     const handleResize = () => setScreenWidth(window.innerWidth);
-    
-    // Set initial screen width
     setScreenWidth(window.innerWidth);
-    
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Use a minimal loading div if client hasn't mounted yet
   if (!isClient) {
     return (
-      <div className={cn(
-        "flex flex-col items-center justify-center pb-2 md:pb-14 min-h-[200px]",
-        className,
-      )}>
-        <div className="text-sm text-muted-foreground">Loading gallery...</div>
+      <div
+        className={cn(
+          "flex min-h-[400px] flex-col items-center justify-center",
+          className,
+        )}
+      >
+        <div className="size-8 animate-spin rounded-full border-2 border-muted border-t-accent" />
       </div>
     );
   }
 
-  const isForwardButtonVisible = doesProjectExist(configIndex, "forward");
-  const isBackwardButtonVisible = doesProjectExist(configIndex, "backward");
+  const isMobile = getIsScreenMobile(screenWidth);
 
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center justify-center pb-2 md:pb-14",
-        className,
-      )}
-    >
-      {!getIsScreenMobile(screenWidth) && (
+    <div className={cn("", className)}>
+      {!isMobile && (
         <>
-          <div className="mb-4">
-            <Button
-              className="w-44"
-              onClick={() => setIsCarouselShowing(!isCarouselShowing)}
-            >
-              Toggle Gallery View
-            </Button>
+          <div className="mb-6 flex justify-end">
+            <div className="flex items-center gap-2 rounded-full border border-border p-1">
+              <button
+                onClick={() => setIsCarouselShowing(true)}
+                className={cn(
+                  "flex size-9 items-center justify-center rounded-full transition-colors",
+                  isCarouselShowing
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+                aria-label="Carousel view"
+              >
+                <Rows3 className="size-4" />
+              </button>
+              <button
+                onClick={() => setIsCarouselShowing(false)}
+                className={cn(
+                  "flex size-9 items-center justify-center rounded-full transition-colors",
+                  !isCarouselShowing
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+                aria-label="Grid view"
+              >
+                <LayoutGrid className="size-4" />
+              </button>
+            </div>
           </div>
+
           {isCarouselShowing ? (
             <CustomCarousel imageUrls={imageUrls} imageQuality={50} />
           ) : (
-            <GridGallery
-              imageUrls={imageUrls}
-              imageQuality={50}
-              className="mb-8"
-            />
+            <GridGallery imageUrls={imageUrls} imageQuality={50} />
           )}
-          <div
-            className={cn(
-              "flex flex-col items-center justify-center md:flex-row",
-              {
-                "space-y-4 md:space-x-8 md:space-y-0":
-                  isBackwardButtonVisible && isForwardButtonVisible,
-              },
-            )}
-          >
-            {isBackwardButtonVisible && (
-              <SwitchProjectButton
-                currentProjectIndex={configIndex}
-                direction="backward"
-              />
-            )}
-            {isForwardButtonVisible && (
-              <SwitchProjectButton
-                currentProjectIndex={configIndex}
-                direction="forward"
-              />
-            )}
-          </div>
         </>
       )}
-      {getIsScreenMobile(screenWidth) && (
-        <>
-          <div
-            className={cn(
-              "flex flex-col items-center justify-center md:flex-row",
-              {
-                "space-y-4 md:space-x-8 md:space-y-0":
-                  isBackwardButtonVisible && isForwardButtonVisible,
-              },
-            )}
-          >
-            {isBackwardButtonVisible && (
-              <SwitchProjectButton
-                currentProjectIndex={configIndex}
-                direction="backward"
-              />
-            )}
-            {isForwardButtonVisible && (
-              <SwitchProjectButton
-                currentProjectIndex={configIndex}
-                direction="forward"
-              />
-            )}
-          </div>
-          <MobileImageList imageUrls={imageUrls} imageQuality={30} />
-        </>
-      )}
+
+      {isMobile && <MobileImageList imageUrls={imageUrls} imageQuality={30} />}
     </div>
   );
-};
-
-export default Gallery;
+}

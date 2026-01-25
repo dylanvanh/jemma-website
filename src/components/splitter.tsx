@@ -1,22 +1,32 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-import React from "react";
+import { motion } from "motion/react";
 
 interface SplitterProps extends React.HTMLAttributes<HTMLDivElement> {
   sectionTitle: string;
 }
 
-const Splitter: React.FC<SplitterProps> = ({ sectionTitle, className, id }) => {
+export default function Splitter({
+  sectionTitle,
+  className,
+  id,
+}: SplitterProps) {
   return (
-    <span
+    <motion.div
       id={id}
-      className={cn("relative flex justify-center pb-6", className)}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className={cn("px-6 md:px-12 lg:px-24", className)}
     >
-      <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75"></div>
-      <span className="relative z-10 bg-white px-6 font-heading text-3xl leading-[1.1] dark:bg-background sm:text-3xl md:text-6xl">
-        {sectionTitle}
-      </span>
-    </span>
+      <div className="flex items-end gap-6">
+        <h2 className="font-heading text-4xl font-medium tracking-tight md:text-5xl lg:text-6xl">
+          {sectionTitle}
+        </h2>
+        <div className="mb-3 h-px flex-1 bg-border" />
+      </div>
+    </motion.div>
   );
-};
-
-export default Splitter;
+}

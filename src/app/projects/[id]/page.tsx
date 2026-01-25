@@ -5,6 +5,7 @@ import { type ProjectItem } from "@/types/project";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import BackToTopButton from "@/components/back-to-top-button";
+import SwitchProjectButton from "@/components/projects/switch-project-button";
 
 const Gallery = dynamic(() => import("@/components/projects/gallery"));
 
@@ -58,19 +59,27 @@ export default async function Page({ params }: PageProps) {
   const projectItem: ProjectItem = getProjectItemFromParams(resolvedParams.id);
 
   return (
-    <>
-      <div className="container flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center space-y-4 py-5 md:mb-10">
-          <h2 className="mb-2 font-heading text-3xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">
-            {projectItem?.title}
-          </h2>
-          <p className="md:text-l mx-auto px-8 text-xs text-gray-500 dark:text-gray-400 md:max-w-[70%] lg:max-w-[80%] xl:text-xl 2xl:max-w-[85%]">
-            {projectItem?.description}
+    <main className="min-h-screen pt-20">
+      <div className="px-6 py-12 md:px-12 md:py-16 lg:px-24">
+        <SwitchProjectButton currentProjectId={resolvedParams.id} className="mb-8" />
+
+        <div className="mb-12 max-w-4xl">
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-accent">
+            {projectItem.designType}
+          </p>
+          <h1 className="mb-6 font-heading text-4xl font-medium tracking-tight md:text-5xl lg:text-6xl">
+            {projectItem.title}
+          </h1>
+          <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+            {projectItem.description}
           </p>
         </div>
+
         <Gallery id={resolvedParams.id} />
+
+        <SwitchProjectButton currentProjectId={resolvedParams.id} className="mt-16" />
       </div>
       <BackToTopButton />
-    </>
+    </main>
   );
 }

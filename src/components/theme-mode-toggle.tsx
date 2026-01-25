@@ -1,16 +1,7 @@
 "use client";
 
-import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Switch } from "./ui/switch";
 
 interface ThemeModeToggleProps {
@@ -19,55 +10,37 @@ interface ThemeModeToggleProps {
 
 export function ThemeModeToggle({ useSwitcherView }: ThemeModeToggleProps) {
   const { setTheme, resolvedTheme } = useTheme();
-
   const isDarkMode = resolvedTheme === "dark";
 
   const handleToggle = () => {
     setTheme(isDarkMode ? "light" : "dark");
   };
 
+  if (useSwitcherView) {
+    return (
+      <div className="flex items-center gap-3">
+        <Switch
+          id="theme-toggle"
+          checked={isDarkMode}
+          onCheckedChange={handleToggle}
+        />
+        {isDarkMode ? (
+          <Moon className="size-4 text-muted-foreground" />
+        ) : (
+          <Sun className="size-4 text-muted-foreground" />
+        )}
+      </div>
+    );
+  }
+
   return (
-    <>
-      {!useSwitcherView && (
-        <div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                Light
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                Dark
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                System
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      )}
-      {useSwitcherView && (
-        <div className="flex space-x-4">
-          <Switch
-            id="theme-toggle"
-            checked={isDarkMode}
-            onClick={handleToggle}
-          />
-          <div className="icon-container">
-            {isDarkMode ? (
-              <Moon className="rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            ) : (
-              <Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            )}
-          </div>
-        </div>
-      )}
-    </>
+    <button
+      onClick={handleToggle}
+      className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+      aria-label="Toggle theme"
+    >
+      <Sun className="size-4 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute size-4 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />
+    </button>
   );
 }
