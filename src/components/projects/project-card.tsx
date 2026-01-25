@@ -1,9 +1,7 @@
-"use client";
-
 import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type PortfolioItem = {
   id: string;
@@ -13,26 +11,19 @@ type PortfolioItem = {
   previewImageUrl: string;
 };
 
-interface ProjectCardProps extends React.ComponentPropsWithoutRef<"div"> {
+interface ProjectCardProps {
   portfolioItem: PortfolioItem;
+  className?: string;
 }
 
 export default function ProjectCard({
   portfolioItem,
   className,
-  ...props
 }: ProjectCardProps) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(portfolioItem.href + portfolioItem.id);
-  };
-
   return (
-    <div
-      onClick={handleClick}
-      className={cn("group cursor-pointer", className)}
-      {...props}
+    <Link
+      href={portfolioItem.href + portfolioItem.id}
+      className={cn("group block", className)}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         <Image
@@ -61,6 +52,6 @@ export default function ProjectCard({
           <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -14,6 +14,17 @@ const config = {
       },
     ],
   },
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react",
+      "motion/react",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-accordion",
+      "@radix-ui/react-switch",
+      "@radix-ui/react-label",
+    ],
+  },
 };
 
 export default config;

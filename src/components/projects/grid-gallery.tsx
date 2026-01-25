@@ -51,7 +51,7 @@ export default function GridGallery({
         ))}
       </div>
 
-      {isModalOpen && (
+      {isModalOpen ? (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm"
           onClick={closeModal}
@@ -84,7 +84,7 @@ export default function GridGallery({
             />
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

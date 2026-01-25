@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { type ContactFormData } from "@/types/contact-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -32,7 +32,7 @@ export const contactFormSchema = z.object({
 });
 
 export function ContactSection() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
@@ -43,28 +43,26 @@ export function ContactSection() {
     },
   });
 
-  async function onSubmit(contactFormData: ContactFormData) {
-    setIsSubmitting(true);
+  function onSubmit(contactFormData: ContactFormData) {
+    startTransition(async () => {
+      try {
+        const response = await fetch("/api/contact-form", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(contactFormData),
+        });
 
-    try {
-      const response = await fetch("/api/contact-form", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contactFormData),
-      });
+        if (!response.ok) {
+          throw new Error("Invalid response");
+        }
 
-      if (!response.ok) {
-        throw new Error("Invalid response");
+        form.reset();
+        toast.success("Message sent successfully!");
+      } catch (error) {
+        console.error("Error:", error);
+        toast.error("Something went wrong. Please try again.");
       }
-
-      form.reset();
-      toast.success("Message sent successfully!");
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    });
   }
 
   return (
@@ -176,10 +174,10 @@ export function ContactSection() {
               />
               <Button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isPending}
                 className="mt-4 w-full bg-accent text-accent-foreground transition-all hover:bg-accent/90 md:w-auto md:px-12"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isPending ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Form>

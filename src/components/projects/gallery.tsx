@@ -25,7 +25,7 @@ export default function Gallery({ id, className }: GalleryProps) {
     setIsClient(true);
     const handleResize = () => setScreenWidth(window.innerWidth);
     setScreenWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -46,7 +46,9 @@ export default function Gallery({ id, className }: GalleryProps) {
 
   return (
     <div className={cn("", className)}>
-      {!isMobile && (
+      {isMobile ? (
+        <MobileImageList imageUrls={imageUrls} imageQuality={30} />
+      ) : (
         <>
           <div className="mb-6 flex justify-end">
             <div className="flex items-center gap-2 rounded-full border border-border p-1">
@@ -84,8 +86,6 @@ export default function Gallery({ id, className }: GalleryProps) {
           )}
         </>
       )}
-
-      {isMobile && <MobileImageList imageUrls={imageUrls} imageQuality={30} />}
     </div>
   );
 }
