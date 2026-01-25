@@ -1,7 +1,6 @@
 "use client";
 
 import { type NavItem } from "@/types/navbar";
-import Image from "next/image";
 import Link from "next/link";
 import { ThemeModeToggle } from "../theme-mode-toggle";
 import { NavDrawer } from "./nav-drawer";
@@ -16,31 +15,30 @@ export function MainNav({ navItems }: MainNavProps) {
   }
 
   return (
-    <nav className="z-10 flex w-full justify-between px-12 py-5">
-      <Link href="/" className="hidden items-center space-x-2 md:flex">
-        <Image src="/jw-logo.png" alt="JW logo" width={40} height={40} />
+    <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between bg-background/80 px-6 py-4 backdrop-blur-md md:px-12">
+      <Link
+        href="/"
+        className="font-heading text-xl font-medium tracking-tight"
+      >
+        JW
       </Link>
-      <div className={"hidden md:flex"}>
-        {navItems.map((item, index) => {
-          return (
-            <Link key={index} href={item.href}>
-              <span
-                className={
-                  "flex rounded-md px-3 py-2 text-lg font-medium hover:bg-accent hover:text-accent-foreground"
-                }
-              >
-                <span>{item.title}</span>
-              </span>
-            </Link>
-          );
-        })}
+
+      <div className="hidden items-center gap-1 md:flex">
+        {navItems.map((item, index) => (
+          <Link key={index} href={item.href} className="group relative px-4 py-2">
+            <span className="text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground transition-colors group-hover:text-foreground">
+              {item.title}
+            </span>
+            <span className="absolute bottom-1 left-4 right-4 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
+          </Link>
+        ))}
       </div>
-      <div className={"hidden md:flex"}>
-        <div className={"px-5"}>
-          <ThemeModeToggle />
-        </div>
+
+      <div className="hidden items-center gap-4 md:flex">
+        <ThemeModeToggle />
       </div>
-      <div className={"ml-auto hover:cursor-pointer md:hidden"}>
+
+      <div className="md:hidden">
         <NavDrawer navItems={navItems} />
       </div>
     </nav>

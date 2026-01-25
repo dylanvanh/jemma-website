@@ -10,26 +10,24 @@ import {
 } from "@/components/ui/carousel";
 import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface CustomCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   imageUrls: string[];
   imageQuality: number;
 }
 
-const CustomCarousel: React.FC<CustomCarouselProps> = ({
+export default function CustomCarousel({
   imageUrls,
   imageQuality,
   className,
-}) => {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
+}: CustomCarouselProps) {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
@@ -40,43 +38,40 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({
   }, [api]);
 
   return (
-    <div className={cn("mb-5 px-8 sm:px-0", className)}>
+    <div className={cn("relative", className)}>
       <Carousel
-        opts={{
-          align: "start",
-        }}
-        orientation={"horizontal"}
+        opts={{ align: "center", loop: true }}
         setApi={setApi}
-        className="w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl"
+        className="w-full"
       >
         <CarouselContent>
-          {Array.from({ length: imageUrls.length }).map((_, index) => (
+          {imageUrls.map((url, index) => (
             <CarouselItem key={index}>
-              <Image
-                onClick={() => console.log(index)}
-                src={imageUrls[index]!}
-                alt="Project Gallery Image"
-                width={1200}
-                height={800}
-                quality={imageQuality}
-                priority
-                className="w-full h-auto"
-                style={{ minHeight: "400px" }}
-                placeholder={`data:image/svg+xml;base64,${toBase64(
-                  createImagePlaceholderShimmer(1200, 800),
-                )}`}
-              />
+              <div className="relative aspect-[3/2] w-full overflow-hidden bg-muted">
+                <Image
+                  src={url}
+                  alt={`Project Gallery Image ${index + 1}`}
+                  fill
+                  className="object-contain"
+                  quality={imageQuality}
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  placeholder={`data:image/svg+xml;base64,${toBase64(
+                    createImagePlaceholderShimmer(1200, 800),
+                  )}`}
+                />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+
+        <CarouselPrevious className="left-4" />
+        <CarouselNext className="right-4" />
       </Carousel>
-      <div className="py-2 text-center text-sm text-muted-foreground">
+
+      <p className="mt-4 text-center text-sm text-muted-foreground">
         Slide {current} of {count}
-      </div>
+      </p>
     </div>
   );
-};
-
-export default CustomCarousel;
+}

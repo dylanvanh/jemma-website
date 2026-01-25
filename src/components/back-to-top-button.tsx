@@ -1,43 +1,40 @@
 "use client";
 
-import { ChevronUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
-const BackToTopButton = () => {
+export default function BackToTopButton() {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     const checkScrollTop = () => {
-      if (!showButton && window.scrollY > 400) {
-        setShowButton(true);
-      } else if (showButton && window.scrollY <= 400) {
-        setShowButton(false);
-      }
+      setShowButton(window.scrollY > 400);
     };
     window.addEventListener("scroll", checkScrollTop);
-    return () => {
-      window.removeEventListener("scroll", checkScrollTop);
-    };
-  }, [showButton]);
+    return () => window.removeEventListener("scroll", checkScrollTop);
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    showButton && (
-      <button
-        onClick={scrollToTop}
-        className="duration-30 fixed bottom-5 right-5 rounded-full bg-primary p-2 text-primary-foreground transition hover:bg-primary/90 "
-        aria-label="Back to top"
-      >
-        <ChevronUp className="h-8 w-8 text-white hover:cursor-pointer hover:text-gray-200 dark:text-gray-500" />
-      </button>
-    )
+    <button
+      onClick={scrollToTop}
+      className={cn(
+        "fixed bottom-6 right-6 z-50",
+        "flex size-12 items-center justify-center",
+        "rounded-full border border-border bg-background/80 backdrop-blur-sm",
+        "text-muted-foreground transition-all duration-300",
+        "hover:border-accent hover:text-accent",
+        showButton
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-4 opacity-0",
+      )}
+      aria-label="Back to top"
+    >
+      <ArrowUp className="size-5" />
+    </button>
   );
-};
-
-export default BackToTopButton;
+}

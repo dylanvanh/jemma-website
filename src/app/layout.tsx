@@ -1,24 +1,25 @@
 import "@/styles/globals.css";
 
-import { Inter as FontSans } from "next/font/google";
-import localFont from "next/font/local";
+import { Outfit, Playfair_Display } from "next/font/google";
 import { Providers } from "../components/providers/providers";
 import { TailwindIndicator } from "@/components/dev/tailwind-indicator";
 import { MainNav } from "@/components/navbar/main-nav";
 import { navBarConfig } from "@/config/nav-config";
 import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { type Metadata } from "next";
 import FooterSection from "@/sections/footer-section";
 
-const fontSans = FontSans({
+const fontSans = Outfit({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const fontHeading = localFont({
-  src: "../fonts/CalSans-SemiBold.woff2",
+const fontHeading = Playfair_Display({
+  subsets: ["latin"],
   variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
 });
 
 const titleDefault = "Jemma Wedgwood - Portfolio Website";

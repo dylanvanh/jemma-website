@@ -1,69 +1,118 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+"use client";
+
+import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
+import Image from "next/image";
+
+const skills = [
+  "Interior Design",
+  "3D Modeling",
+  "Renders",
+  "Technical Drawings",
+  "Branding",
+  "Custom Furniture",
+];
 
 export function AboutSection() {
   return (
-    <>
-      <section className="container my-20 flex flex-col items-center justify-center md:flex-row">
-        <div className="md:mr-20 md:px-10 lg:px-10">
-          <Avatar
-            className={cn(
-              "mx-auto mb-10 h-56 w-56",
-              "md:h-56 md:w-56",
-              "lg:h-96 lg:w-96",
-            )}
+    <section className="px-6 py-16 md:px-12 md:py-24 lg:px-24">
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="relative aspect-[4/5] overflow-hidden lg:aspect-auto lg:h-full"
+        >
+          <Image
+            src="/jemma-profile.webp"
+            alt="Jemma Wedgwood"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+        </motion.div>
+
+        <div className="flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <AvatarImage
-              className="h-auto w-auto"
-              src="/jemma-profile.webp"
-              alt="Jemma Wedgwood Profile Photo"
-            />
-            <AvatarFallback>Jemma</AvatarFallback>
-          </Avatar>
+            <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent">
+              About Me
+            </p>
+            <h3 className="mb-8 font-heading text-3xl font-medium leading-tight tracking-tight md:text-4xl">
+              Creating spaces that tell stories
+            </h3>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-6 text-muted-foreground"
+          >
+            <p className="text-base leading-relaxed md:text-lg">
+              I have embarked on a journey in interior design, successfully
+              completing numerous projects with my unique designs. My approach
+              combines functionality with aesthetics, creating spaces that are
+              both beautiful and livable.
+            </p>
+            <p className="text-base leading-relaxed md:text-lg">
+              My creative flair also finds expression in photography. As I
+              continue to explore these artistic domains, I am enthusiastic
+              about broadening my expertise and leaving a distinctive mark in
+              both interior design and photography.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-10"
+          >
+            <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              Expertise
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill, index) => (
+                <Badge
+                  key={skill}
+                  variant="secondary"
+                  className={cn(
+                    "rounded-full px-4 py-2 text-sm font-normal",
+                    "transition-colors hover:bg-accent hover:text-accent-foreground",
+                  )}
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-10 flex items-center gap-4"
+          >
+            <div className="size-2 rounded-full bg-accent" />
+            <p className="text-sm text-muted-foreground">
+              Based in Cape Town, South Africa
+            </p>
+          </motion.div>
         </div>
-        <div className="w-2/3 sm:w-2/3 md:w-1/3">
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Bio</AccordionTrigger>
-              <AccordionContent className="break-words">
-                <p className="mb-4">
-                  I have embarked on a journey in interior design, successfully
-                  completing numerous projects with my unique designs.
-                </p>
-                <p className="mb-4">
-                  My creative flair also finds expression in photography. As I
-                  continue to explore these artistic domains, I am enthusiastic
-                  about broadening my expertise and leaving a distinctive mark
-                  in both interior design and photography.
-                </p>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>Skills</AccordionTrigger>
-              <AccordionContent>
-                <ul className="list-disc pl-5">
-                  <li>Interior Design</li>
-                  <li>3D Models</li>
-                  <li>Renders</li>
-                  <li>Technical Drawings</li>
-                  <li>Branding</li>
-                  <li>Custom Furniture</li>
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>Location</AccordionTrigger>
-              <AccordionContent>Cape Town, South Africa</AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

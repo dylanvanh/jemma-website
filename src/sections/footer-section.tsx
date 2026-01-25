@@ -6,40 +6,52 @@ export default function FooterSection() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="container flex flex-col items-center justify-center pb-14">
-      <div className="mb-8 flex flex-col items-center justify-center space-y-6 md:flex-row md:space-y-0">
-        {navBarConfig.navItems.map((item, index) => {
-          return (
-            <a
-              key={index}
-              href={item.href}
-              className="mx-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-primary sm:mx-5"
-            >
-              {item.title}
-            </a>
-          );
-        })}
+    <footer className="border-t border-border px-6 py-12 md:px-12 lg:px-24">
+      <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+        <div className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
+          <Link
+            href="/"
+            className="font-heading text-xl font-medium tracking-tight"
+          >
+            JW
+          </Link>
+          <nav className="flex flex-wrap justify-center gap-6">
+            {navBarConfig.navItems.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {item.title}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <Link
+            href="mailto:jemmawedgwood01@gmail.com"
+            className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+            aria-label="Email"
+          >
+            <Mail className="size-4" />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/jemma-wedgwood/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="size-4" />
+          </Link>
+        </div>
       </div>
-      <div className="justify-cente mb-5 flex flex-row ">
-        <Link
-          href="mailto:jemmawedgwood01@gmail.com"
-          className="mx-5 text-slate-500 hover:text-green-600 dark:text-slate-400 dark:hover:text-primary"
-          aria-label="Open Mail"
-        >
-          <Mail size={28} />
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/jemma-wedgwood/"
-          target="_blank"
-          aria-label="Linkedin Link"
-          rel="noopener noreferrer"
-          className="mx-5 text-slate-500 hover:text-blue-600 dark:text-ring dark:text-slate-400 dark:hover:text-primary"
-        >
-          <Linkedin size={28} />
-        </Link>
-      </div>
-      <div className="text-xs text-slate-500 dark:text-ring dark:text-slate-400 sm:text-sm">
-        © {currentYear} Jemma Wedgwood. All rights reserved.
+
+      <div className="mt-8 border-t border-border pt-8 text-center">
+        <p className="text-sm text-muted-foreground">
+          © {currentYear} Jemma Wedgwood. All rights reserved.
+        </p>
       </div>
     </footer>
   );
