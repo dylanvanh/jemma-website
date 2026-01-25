@@ -17,9 +17,11 @@ export default function MobileImageList({
 }: MobileImageListProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
+  const [isImageLoading, setIsImageLoading] = useState(true);
 
   const openModal = (url: string) => {
     setSelectedImageUrl(url);
+    setIsImageLoading(true);
     setIsModalOpen(true);
   };
 
@@ -73,14 +75,23 @@ export default function MobileImageList({
             className="relative max-h-[90vh] max-w-[95vw]"
             onClick={(e) => e.stopPropagation()}
           >
+            {isImageLoading ? (
+              <div className="flex min-h-[200px] min-w-[250px] items-center justify-center">
+                <div className="size-8 animate-spin rounded-full border-2 border-muted border-t-accent" />
+              </div>
+            ) : null}
             <Image
               src={selectedImageUrl}
               alt="Enlarged Gallery Image"
               width={800}
               height={600}
-              className="max-h-[90vh] w-auto object-contain"
+              className={cn(
+                "max-h-[90vh] w-auto object-contain",
+                isImageLoading && "invisible absolute",
+              )}
               quality={80}
               priority
+              onLoad={() => setIsImageLoading(false)}
             />
           </div>
         </div>
