@@ -1,6 +1,5 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Switch } from "./ui/switch";
 
@@ -24,11 +23,9 @@ export function ThemeModeToggle({ useSwitcherView }: ThemeModeToggleProps) {
           checked={isDarkMode}
           onCheckedChange={handleToggle}
         />
-        {isDarkMode ? (
-          <Moon className="size-4 text-muted-foreground" />
-        ) : (
-          <Sun className="size-4 text-muted-foreground" />
-        )}
+        <span className="text-muted-foreground text-sm">
+          {isDarkMode ? "Dark" : "Light"}
+        </span>
       </div>
     );
   }
@@ -36,11 +33,10 @@ export function ThemeModeToggle({ useSwitcherView }: ThemeModeToggleProps) {
   return (
     <button
       onClick={handleToggle}
-      className="flex size-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
-      aria-label="Toggle theme"
+      className="border-border text-muted-foreground hover:text-foreground min-h-11 border-l pl-5 text-xs font-semibold tracking-[0.14em] uppercase transition-colors active:translate-y-px"
+      aria-label={`Switch to ${isDarkMode ? "light" : "dark"} theme`}
     >
-      <Sun className="size-4 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute size-4 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />
+      {isDarkMode ? "Light" : "Dark"}
     </button>
   );
 }

@@ -23,9 +23,9 @@ export default function BackToTopButton() {
     <button
       onClick={scrollToTop}
       className={cn(
-        "fixed bottom-6 right-6 z-50",
+        "fixed right-5 bottom-5 z-50",
         "flex size-12 items-center justify-center",
-        "rounded-full border border-border bg-background/80 backdrop-blur-sm",
+        "border-border bg-background/90 border backdrop-blur-sm",
         "text-muted-foreground transition-all duration-300",
         "hover:border-accent hover:text-accent",
         showButton

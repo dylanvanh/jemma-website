@@ -33,14 +33,16 @@ export default function MobileImageList({
     <>
       <div className={cn("space-y-4", className)}>
         {imageUrls.map((url, index) => (
-          <div
+          <button
+            type="button"
             key={index}
-            className="relative aspect-[4/3] cursor-pointer overflow-hidden bg-muted"
+            className="bg-muted relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden text-left"
             onClick={() => openModal(url)}
+            aria-label={`Open project image ${index + 1}`}
           >
             <Image
               src={url}
-              alt={`Project Gallery Image ${index + 1}`}
+              alt={`Project study view ${index + 1}`}
               fill
               className="object-cover"
               quality={imageQuality}
@@ -50,21 +52,24 @@ export default function MobileImageList({
               )}`}
               priority={index < 3}
             />
-          </div>
+            <span className="bg-background/90 absolute right-3 bottom-3 px-2 py-1 text-xs tabular-nums backdrop-blur-sm">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </button>
         ))}
       </div>
 
       {isModalOpen ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm"
+          className="bg-background/95 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
           onClick={closeModal}
         >
           <button
             onClick={closeModal}
             className={cn(
-              "absolute right-4 top-4 z-10",
-              "flex size-10 items-center justify-center rounded-full",
-              "border border-border bg-background/80 text-muted-foreground",
+              "absolute top-4 right-4 z-10",
+              "flex size-11 items-center justify-center",
+              "border-border bg-background/80 text-muted-foreground border",
             )}
             aria-label="Close modal"
           >
@@ -77,12 +82,12 @@ export default function MobileImageList({
           >
             {isImageLoading ? (
               <div className="flex min-h-[200px] min-w-[250px] items-center justify-center">
-                <div className="size-8 animate-spin rounded-full border-2 border-muted border-t-accent" />
+                <p className="text-muted-foreground text-sm">Loading image…</p>
               </div>
             ) : null}
             <Image
               src={selectedImageUrl}
-              alt="Enlarged Gallery Image"
+              alt="Enlarged project study"
               width={800}
               height={600}
               className={cn(

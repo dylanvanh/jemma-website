@@ -13,45 +13,55 @@ type PortfolioItem = {
 
 interface ProjectCardProps {
   portfolioItem: PortfolioItem;
+  index: number;
   className?: string;
 }
 
 export default function ProjectCard({
   portfolioItem,
+  index,
   className,
 }: ProjectCardProps) {
   return (
     <Link
       href={portfolioItem.href + portfolioItem.id}
-      className={cn("group block", className)}
+      className={cn("group block focus-visible:outline-none", className)}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-        <Image
-          src={portfolioItem.previewImageUrl}
-          alt={portfolioItem.title}
-          fill
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          placeholder={`data:image/svg+xml;base64,${toBase64(
-            createImagePlaceholderShimmer(400, 300),
-          )}`}
-        />
-        <div className="absolute inset-0 bg-foreground/0 transition-colors duration-300 group-hover:bg-foreground/5" />
-      </div>
+      <article>
+        <div className="bg-muted relative aspect-[4/3] overflow-hidden">
+          <Image
+            src={portfolioItem.previewImageUrl}
+            alt={portfolioItem.title}
+            fill
+            className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.035]"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            placeholder={`data:image/svg+xml;base64,${toBase64(
+              createImagePlaceholderShimmer(400, 300),
+            )}`}
+          />
+          <div className="bg-foreground/0 group-hover:bg-foreground/10 absolute inset-0 transition-colors duration-300" />
+          <span className="bg-background/90 absolute top-4 left-4 px-3 py-2 text-xs font-semibold tabular-nums backdrop-blur-sm">
+            0{index + 1}
+          </span>
+        </div>
 
-      <div className="mt-5 flex items-start justify-between">
-        <div>
-          <h3 className="font-heading text-xl font-medium tracking-tight transition-colors group-hover:text-accent md:text-2xl">
-            {portfolioItem.title}
-          </h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {portfolioItem.designType}
-          </p>
+        <div className="border-border mt-5 flex items-start justify-between gap-6 border-t pt-4">
+          <div>
+            <p className="text-muted-foreground mb-2 text-xs font-semibold tracking-[0.14em] uppercase">
+              {portfolioItem.designType}
+            </p>
+            <h3 className="font-heading group-hover:text-accent text-3xl font-medium tracking-[-0.035em] transition-colors md:text-4xl">
+              {portfolioItem.title}
+            </h3>
+          </div>
+          <div className="border-border group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground flex size-11 shrink-0 items-center justify-center border transition-all duration-300">
+            <ArrowUpRight
+              className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              aria-hidden="true"
+            />
+          </div>
         </div>
-        <div className="flex size-10 items-center justify-center rounded-full border border-border transition-all duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground">
-          <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-        </div>
-      </div>
+      </article>
     </Link>
   );
 }

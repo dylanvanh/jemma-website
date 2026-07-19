@@ -26,16 +26,22 @@ export default function SwitchProjectButton({
       : null;
 
   return (
-    <div className={cn("flex w-full items-center justify-between gap-4", className)}>
+    <nav
+      aria-label="Project navigation"
+      className={cn(
+        "flex w-full items-center justify-between gap-4",
+        className,
+      )}
+    >
       {prevProject ? (
         <Link
           href={`/projects/${prevProject.id}`}
-          className="group flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground"
+          className="group text-muted-foreground hover:text-foreground flex min-h-11 items-center gap-3 transition-colors"
         >
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
           <div className="text-left">
-            <p className="text-xs uppercase tracking-[0.1em]">Previous</p>
-            <p className="font-heading text-sm font-medium text-foreground">
+            <p className="text-xs tracking-[0.1em] uppercase">Previous</p>
+            <p className="text-foreground text-sm font-medium">
               {prevProject.title}
             </p>
           </div>
@@ -47,11 +53,11 @@ export default function SwitchProjectButton({
       {nextProject ? (
         <Link
           href={`/projects/${nextProject.id}`}
-          className="group flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground"
+          className="group text-muted-foreground hover:text-foreground flex min-h-11 items-center gap-3 transition-colors"
         >
           <div className="text-right">
-            <p className="text-xs uppercase tracking-[0.1em]">Next</p>
-            <p className="font-heading text-sm font-medium text-foreground">
+            <p className="text-xs tracking-[0.1em] uppercase">Next</p>
+            <p className="text-foreground text-sm font-medium">
               {nextProject.title}
             </p>
           </div>
@@ -60,6 +66,6 @@ export default function SwitchProjectButton({
       ) : (
         <div />
       )}
-    </div>
+    </nav>
   );
 }

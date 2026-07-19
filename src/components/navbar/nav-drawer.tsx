@@ -2,9 +2,14 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { type NavItem } from "@/types/navbar";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { ThemeModeToggle } from "../theme-mode-toggle";
 
 interface SideNavProps {
@@ -18,7 +23,7 @@ export function NavDrawer({ navItems }: SideNavProps) {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <button
-          className="flex size-10 items-center justify-center"
+          className="flex size-11 items-center justify-center"
           aria-label="Open menu"
         >
           <Menu className="size-5" />
@@ -26,39 +31,36 @@ export function NavDrawer({ navItems }: SideNavProps) {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="flex w-full flex-col border-none bg-background p-0 sm:max-w-full"
+        className="bg-background flex w-full flex-col border-none p-0 sm:max-w-full"
       >
-        <div className="flex items-center justify-between px-6 py-4">
-          <span className="font-heading text-xl font-medium tracking-tight">
+        <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+        <div className="site-shell flex items-center py-4">
+          <span className="font-heading text-2xl font-medium tracking-[-0.04em]">
             JW
           </span>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="flex size-10 items-center justify-center"
-            aria-label="Close menu"
-          >
-            <X className="size-5" />
-          </button>
         </div>
 
-        <nav className="flex flex-1 flex-col justify-center px-6">
+        <nav className="site-shell flex flex-1 flex-col justify-center">
           {navItems.map((item, index) => (
             <Link
               key={index}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className="group border-b border-border py-6"
+              className="group border-border flex min-h-20 items-center justify-between border-b py-5"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <span className="font-heading text-4xl font-medium tracking-tight transition-colors group-hover:text-accent">
+              <span className="font-heading group-hover:text-accent text-5xl font-medium tracking-[-0.04em] transition-colors">
                 {item.title}
+              </span>
+              <span className="text-muted-foreground text-xs tabular-nums">
+                0{index + 1}
               </span>
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center justify-between border-t border-border px-6 py-6">
-          <span className="text-sm text-muted-foreground">Theme</span>
+        <div className="site-shell border-border flex items-center justify-between border-t py-6">
+          <span className="text-muted-foreground text-sm">Theme</span>
           <ThemeModeToggle useSwitcherView={true} />
         </div>
       </SheetContent>

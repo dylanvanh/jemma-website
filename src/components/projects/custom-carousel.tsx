@@ -47,7 +47,7 @@ export default function CustomCarousel({
         <CarouselContent>
           {imageUrls.map((url, index) => (
             <CarouselItem key={index}>
-              <div className="relative aspect-[3/2] w-full overflow-hidden bg-muted">
+              <div className="bg-muted relative aspect-[3/2] w-full overflow-hidden">
                 <Image
                   src={url}
                   alt={`Project Gallery Image ${index + 1}`}
@@ -69,8 +69,8 @@ export default function CustomCarousel({
         <CarouselNext className="right-4" />
       </Carousel>
 
-      <p className="mt-4 text-center text-sm text-muted-foreground">
-        Slide {current} of {count}
+      <p className="text-muted-foreground mt-4 text-center text-xs font-semibold tracking-[0.14em] uppercase">
+        View {current} / {count}
       </p>
     </div>
   );

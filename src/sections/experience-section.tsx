@@ -9,51 +9,42 @@ export function ExperienceSection() {
   }
 
   return (
-    <section className="px-6 py-16 md:px-12 md:py-24 lg:px-24">
-      <div className="relative">
-        <div className="absolute left-0 top-0 hidden h-full w-px bg-border md:block md:left-1/2 md:-translate-x-1/2" />
+    <section className="site-shell section-space pt-12 md:pt-16">
+      <div className="grid gap-12 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <p className="text-muted-foreground max-w-xs text-base leading-relaxed md:text-lg">
+            From photography into interior design, with a practice grounded in
+            observation, craft and real-world project experience.
+          </p>
+        </div>
 
-        <div className="space-y-12 md:space-y-0">
+        <ol className="border-border border-t lg:col-span-8">
           {experienceConfig.experienceItems.map((item, index) => (
-            <motion.div
+            <motion.li
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative md:flex md:items-center ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
+              className="border-border grid gap-5 border-b py-7 sm:grid-cols-[6rem_1fr_auto] sm:items-start md:py-9"
             >
-              <div
-                className={`md:w-1/2 ${
-                  index % 2 === 0
-                    ? "md:pr-16 md:text-right"
-                    : "md:pl-16 md:text-left"
-                }`}
-              >
-                <div className="relative border-l border-border pl-6 md:border-none md:pl-0">
-                  <div className="absolute -left-1.5 top-1 size-3 rounded-full border-2 border-accent bg-background md:hidden" />
-
-                  <p className="text-sm font-medium text-accent">{item.period}</p>
-                  <h3 className="mt-2 font-heading text-2xl font-medium tracking-tight">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-muted-foreground">{item.jobType}</p>
-                  <p className="mt-3 text-sm text-muted-foreground">
-                    {item.description} · {item.employmentType}
-                  </p>
-                </div>
+              <p className="text-accent text-xs font-semibold tabular-nums">
+                {item.period}
+              </p>
+              <div>
+                <h3 className="font-heading text-2xl font-medium tracking-[-0.025em] md:text-3xl">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground mt-2 text-base">
+                  {item.description} · {item.employmentType}
+                </p>
               </div>
-
-              <div className="absolute left-1/2 hidden size-4 -translate-x-1/2 items-center justify-center md:flex">
-                <div className="size-3 rounded-full border-2 border-accent bg-background" />
-              </div>
-
-              <div className="hidden md:block md:w-1/2" />
-            </motion.div>
+              <p className="text-muted-foreground text-sm sm:text-right">
+                {item.jobType}
+              </p>
+            </motion.li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

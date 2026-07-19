@@ -57,7 +57,7 @@ export function ContactSection() {
         }
 
         form.reset();
-        toast.success("Message sent successfully!");
+        toast.success("Message sent successfully.");
       } catch (error) {
         console.error("Error:", error);
         toast.error("Something went wrong. Please try again.");
@@ -66,40 +66,43 @@ export function ContactSection() {
   }
 
   return (
-    <section className="px-6 py-16 md:px-12 md:py-24 lg:px-24">
-      <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
+    <section className="site-shell section-space pt-12 md:pt-16">
+      <div className="bg-accent text-accent-foreground grid overflow-hidden lg:grid-cols-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col justify-center"
+          className="flex flex-col justify-center p-7 sm:p-10 lg:col-span-6 lg:p-16"
         >
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent">
-            Get in Touch
+          <p className="text-accent-foreground/70 mb-8 text-xs font-semibold tracking-[0.16em] uppercase">
+            Start a conversation
           </p>
-          <h3 className="mb-6 font-heading text-3xl font-medium leading-tight tracking-tight md:text-4xl lg:text-5xl">
-            Let&apos;s create something beautiful together
+          <h3 className="font-heading max-w-[11ch] text-5xl leading-none font-medium tracking-[-0.04em] md:text-6xl lg:text-7xl">
+            Have a space in mind?
           </h3>
-          <p className="max-w-md text-muted-foreground">
-            Have a project in mind or want to collaborate? I&apos;d love to hear
-            from you. Fill out the form and I&apos;ll get back to you as soon as
-            possible.
+          <p className="text-accent-foreground/75 mt-8 max-w-md text-base leading-relaxed">
+            Tell me what you&apos;re working on, where it is and what you want
+            the space to feel like. I&apos;ll get back to you as soon as I can.
           </p>
 
-          <div className="mt-10 space-y-4">
+          <div className="border-accent-foreground/25 mt-12 space-y-4 border-t pt-6">
             <div className="flex items-center gap-3">
-              <div className="size-2 rounded-full bg-accent" />
+              <span className="text-accent-foreground/60 text-xs tabular-nums">
+                01
+              </span>
               <a
                 href="mailto:jemmawedgwood01@gmail.com"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="text-accent-foreground/80 hover:text-accent-foreground min-h-11 py-2 transition-colors"
               >
                 jemmawedgwood01@gmail.com
               </a>
             </div>
             <div className="flex items-center gap-3">
-              <div className="size-2 rounded-full bg-accent" />
-              <span className="text-muted-foreground">
+              <span className="text-accent-foreground/60 text-xs tabular-nums">
+                02
+              </span>
+              <span className="text-accent-foreground/80">
                 Cape Town, South Africa
               </span>
             </div>
@@ -111,21 +114,25 @@ export function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-card text-card-foreground flex items-center p-7 sm:p-10 lg:col-span-6 lg:p-16"
         >
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="w-full space-y-8"
+            >
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium uppercase tracking-[0.1em] text-muted-foreground">
+                    <FormLabel className="text-muted-foreground text-xs font-semibold tracking-[0.14em] uppercase">
                       Name
                     </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Your name"
-                        className="border-0 border-b border-border bg-transparent px-0 py-3 text-base transition-colors focus-visible:border-accent focus-visible:ring-0"
+                        className="border-border focus-visible:border-accent h-12 rounded-none border-0 border-b bg-transparent px-0 text-base transition-colors focus-visible:ring-0"
                         {...field}
                       />
                     </FormControl>
@@ -138,14 +145,14 @@ export function ContactSection() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium uppercase tracking-[0.1em] text-muted-foreground">
+                    <FormLabel className="text-muted-foreground text-xs font-semibold tracking-[0.14em] uppercase">
                       Email
                     </FormLabel>
                     <FormControl>
                       <Input
                         type="email"
                         placeholder="your@email.com"
-                        className="border-0 border-b border-border bg-transparent px-0 py-3 text-base transition-colors focus-visible:border-accent focus-visible:ring-0"
+                        className="border-border focus-visible:border-accent h-12 rounded-none border-0 border-b bg-transparent px-0 text-base transition-colors focus-visible:ring-0"
                         {...field}
                       />
                     </FormControl>
@@ -158,13 +165,13 @@ export function ContactSection() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm font-medium uppercase tracking-[0.1em] text-muted-foreground">
+                    <FormLabel className="text-muted-foreground text-xs font-semibold tracking-[0.14em] uppercase">
                       Message
                     </FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Tell me about your project..."
-                        className="min-h-32 resize-none border-0 border-b border-border bg-transparent px-0 py-3 text-base transition-colors focus-visible:border-accent focus-visible:ring-0"
+                        className="border-border focus-visible:border-accent min-h-32 resize-none rounded-none border-0 border-b bg-transparent px-0 py-3 text-base transition-colors focus-visible:ring-0"
                         {...field}
                       />
                     </FormControl>
@@ -175,9 +182,9 @@ export function ContactSection() {
               <Button
                 type="submit"
                 disabled={isPending}
-                className="mt-4 w-full bg-accent text-accent-foreground transition-all hover:bg-accent/90 md:w-auto md:px-12"
+                className="bg-foreground text-background hover:bg-foreground/85 mt-4 h-12 w-full rounded-none px-8 transition-all active:translate-y-px md:w-auto"
               >
-                {isPending ? "Sending..." : "Send Message"}
+                {isPending ? "Sending…" : "Send enquiry ↗"}
               </Button>
             </form>
           </Form>

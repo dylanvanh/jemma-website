@@ -8,32 +8,28 @@ import { ProjectSection } from "@/sections/projects-section";
 
 export default function HomePage() {
   return (
-    <main>
+    <main id="main-content">
       <LandingSection />
 
-      <Splitter
-        className="mb-8 pt-16 md:mb-12 md:pt-24"
-        sectionTitle="About"
-        id="about"
-      />
+      <Splitter className="pt-24 md:pt-32" sectionTitle="About" id="about" />
       <AboutSection />
 
       <Splitter
-        className="mb-8 pt-16 md:mb-12 md:pt-24"
+        className="pt-24 md:pt-32"
         sectionTitle="Projects"
         id="projects"
       />
       <ProjectSection />
 
       <Splitter
-        className="mb-8 pt-16 md:mb-12 md:pt-24"
+        className="pt-24 md:pt-32"
         sectionTitle="Experience"
         id="experience"
       />
       <ExperienceSection />
 
       <Splitter
-        className="mb-8 pt-16 md:mb-12 md:pt-24"
+        className="pt-24 md:pt-32"
         sectionTitle="Contact"
         id="contact"
       />
