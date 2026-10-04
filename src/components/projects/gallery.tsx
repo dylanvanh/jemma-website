@@ -1,5 +1,4 @@
-"use client";
-
+import { getImageSources } from "@/lib/images";
 import { projectConfig } from "@/config/project-config";
 import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -11,7 +10,6 @@ import {
   Rows3,
   X,
 } from "lucide-react";
-import Image from "next/image";
 import { useRef, useState } from "react";
 
 interface GalleryProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -38,13 +36,14 @@ function ProjectImage({
   }
 
   return (
-    <Image
+    <img
       src={src}
+      srcSet={getImageSources(src)}
       alt={alt}
-      fill
+      loading="lazy"
+      decoding="async"
       sizes={sizes}
-      quality={85}
-      className="object-contain"
+      className="absolute inset-0 h-full w-full object-contain"
       onError={() => setHasError(true)}
     />
   );

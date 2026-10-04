@@ -40,3 +40,14 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# TanStack Start and Cloudflare
+/dist/
+/.wrangler/
+/.tanstack/
+.dev.vars*
+!.dev.vars.example
+/worker-configuration.d.ts
+
+# Built from the source project photographs
+/public/generated/

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+import { getImageSources } from "@/lib/images";
+import { Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { projectConfig } from "@/config/project-config";
 
@@ -20,12 +20,14 @@ export function ProjectSection() {
       </div>
       <div className="project-showcase">
         <div className="project-stage">
-          <Image
+          <img
             src="/projects/clinic-detail.png"
+            srcSet={getImageSources("/projects/clinic-detail.png")}
             alt="Curved chairs and warm timber in the Skin Clinic consultation room"
-            fill
+            loading="lazy"
+            decoding="async"
             sizes="(max-width: 767px) 100vw, 65vw"
-            className="object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="project-stage-shade" />
           <div className="project-stage-copy">
@@ -34,11 +36,19 @@ export function ProjectSection() {
               <br />
               meets feeling.
             </h2>
-            <a href="#project-index" className="pill-link pill-link-light">
+            <Link
+              to="/"
+              hash="project-index"
+              className="pill-link pill-link-light"
+            >
               View all projects <ArrowDown size={15} aria-hidden="true" />
-            </a>
+            </Link>
           </div>
-          <Link href="/projects/2" className="stage-caption">
+          <Link
+            to="/projects/$projectId"
+            params={{ projectId: "2" }}
+            className="stage-caption"
+          >
             <span>
               Skin Clinic <span> / Healing design</span>
             </span>
@@ -52,17 +62,20 @@ export function ProjectSection() {
         >
           {projects.map((project, index) => (
             <Link
-              href={`/projects/${project.id}`}
+              to="/projects/$projectId"
+              params={{ projectId: project.id }}
               key={project.id}
               className="project-tile"
             >
               <div className="project-tile-image">
-                <Image
+                <img
                   src={project.previewImageUrl}
+                  srcSet={getImageSources(project.previewImageUrl)}
                   alt={`${project.title} design concept`}
-                  fill
+                  loading="lazy"
+                  decoding="async"
                   sizes="(max-width: 767px) 100vw, (max-width: 1520px) 30vw, 400px"
-                  className="object-cover"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
                 <span className="project-tile-arrow">
                   <ArrowUpRight size={20} aria-hidden="true" />

@@ -1,6 +1,7 @@
 export type NavItem = {
   title: string;
-  href: string;
+  to: "/";
+  hash?: string;
 };
 
 export type NavBarConfig = {

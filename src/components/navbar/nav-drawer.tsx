@@ -1,6 +1,4 @@
-"use client";
-
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Sheet,
@@ -35,8 +33,9 @@ export function NavDrawer({ navItems }: { navItems: NavItem[] }) {
         <nav className="drawer-links" aria-label="Mobile navigation">
           {navItems.map((item) => (
             <Link
-              href={item.href}
-              key={item.href}
+              to={item.to}
+              hash={item.hash}
+              key={item.hash ?? item.to}
               onClick={() => setIsOpen(false)}
             >
               {item.title}

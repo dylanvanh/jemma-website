@@ -1,5 +1,4 @@
-"use client";
-
+import { getImageSources } from "@/lib/images";
 import {
   Carousel,
   CarouselContent,
@@ -8,18 +7,15 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
-import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 interface CustomCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   imageUrls: string[];
-  imageQuality: number;
 }
 
 export default function CustomCarousel({
   imageUrls,
-  imageQuality,
   className,
 }: CustomCarouselProps) {
   const [api, setApi] = useState<CarouselApi>();
@@ -48,17 +44,14 @@ export default function CustomCarousel({
           {imageUrls.map((url, index) => (
             <CarouselItem key={index}>
               <div className="bg-muted relative aspect-[3/2] w-full overflow-hidden">
-                <Image
+                <img
                   src={url}
+                  srcSet={getImageSources(url)}
                   alt={`Project Gallery Image ${index + 1}`}
-                  fill
-                  className="object-contain"
-                  quality={imageQuality}
-                  priority={index === 0}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-contain"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                  placeholder={`data:image/svg+xml;base64,${toBase64(
-                    createImagePlaceholderShimmer(1200, 800),
-                  )}`}
                 />
               </div>
             </CarouselItem>
