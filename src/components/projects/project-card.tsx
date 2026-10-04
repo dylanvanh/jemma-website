@@ -1,7 +1,7 @@
-import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
+import { getImageSources } from "@/lib/images";
+import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 
 type PortfolioItem = {
   id: string;
@@ -24,20 +24,20 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Link
-      href={portfolioItem.href + portfolioItem.id}
+      to="/projects/$projectId"
+      params={{ projectId: portfolioItem.id }}
       className={cn("group block focus-visible:outline-none", className)}
     >
       <article>
         <div className="bg-muted relative aspect-[4/3] overflow-hidden">
-          <Image
+          <img
             src={portfolioItem.previewImageUrl}
+            srcSet={getImageSources(portfolioItem.previewImageUrl)}
             alt={portfolioItem.title}
-            fill
-            className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.035]"
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.035]"
             sizes="(max-width: 768px) 100vw, 50vw"
-            placeholder={`data:image/svg+xml;base64,${toBase64(
-              createImagePlaceholderShimmer(400, 300),
-            )}`}
           />
           <div className="bg-foreground/0 group-hover:bg-foreground/10 absolute inset-0 transition-colors duration-300" />
           <span className="bg-background/90 absolute top-4 left-4 px-3 py-2 text-xs font-semibold tabular-nums backdrop-blur-sm">

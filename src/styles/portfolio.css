@@ -536,57 +536,15 @@
   font-size: clamp(12px, 1.4vw, 18px);
   white-space: nowrap;
 }
-.contact-form {
+.contact-details {
   align-self: center;
-  width: 100%;
+  min-width: 0;
 }
-.contact-field {
-  margin-bottom: 28px;
-}
-.contact-field label {
-  font-size: 12px;
-  font-weight: 400;
-}
-.contact-field input,
-.contact-field textarea {
-  border: none;
-  border-bottom: 1px solid var(--input);
-  box-shadow: none;
-  border-radius: 0;
-  background: transparent;
-  padding: 12px 0;
-  height: 50px;
-  font-size: 16px;
-}
-.contact-field textarea {
-  height: 112px;
-  resize: vertical;
-  min-height: 96px;
-}
-.contact-field input:focus-visible,
-.contact-field textarea:focus-visible {
-  border-color: var(--accent);
-  outline: 2px solid var(--accent);
-  outline-offset: 5px;
-  box-shadow: none;
-}
-.contact-form-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-}
-.contact-form-bottom > p {
-  max-width: 22ch;
-  font-size: 11px;
-  color: var(--muted-foreground);
-}
-.contact-status {
+.contact-location {
+  margin-top: 32px;
   font-size: 13px;
-  margin-top: 20px;
-}
-.contact-status[data-error="true"] {
-  color: var(--destructive);
+  line-height: 1.6;
+  color: var(--muted-foreground);
 }
 .site-footer {
   border-top: 1px solid var(--border);
@@ -886,12 +844,6 @@
     font-size: 14px;
     margin-top: 24px;
     gap: 12px;
-  }
-  .contact-form-bottom {
-    gap: 16px;
-  }
-  .contact-form-bottom > p {
-    font-size: 10px;
   }
   .site-footer {
     gap: 20px;

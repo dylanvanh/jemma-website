@@ -1,0 +1,35 @@
+name: Check portfolio
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm cf-typegen
+      - run: pnpm build
+      - run: pnpm check
+      - run: pnpm format
+      - name: Test the local Cloudflare Worker
+        run: |
+          pnpm exec vite preview --host 127.0.0.1 --port 3001 --strictPort > /tmp/portfolio-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:3001/ > /dev/null; then break; fi
+            sleep 1
+          done
+          pnpm test || { cat /tmp/portfolio-preview.log; exit 1; }
+      - run: pnpm exec wrangler deploy --dry-run

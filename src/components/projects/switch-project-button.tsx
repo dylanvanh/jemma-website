@@ -1,9 +1,7 @@
-"use client";
-
 import { projectConfig } from "@/config/project-config";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 
 interface SwitchProjectButtonProps {
   currentProjectId: string;
@@ -35,7 +33,8 @@ export default function SwitchProjectButton({
     >
       {prevProject ? (
         <Link
-          href={`/projects/${prevProject.id}`}
+          to="/projects/$projectId"
+          params={{ projectId: prevProject.id }}
           className="group flex min-h-16 min-w-0 items-center gap-3 md:gap-5"
         >
           <ArrowLeft
@@ -53,7 +52,8 @@ export default function SwitchProjectButton({
         </Link>
       ) : (
         <Link
-          href="/#projects"
+          to="/"
+          hash="projects"
           className="text-muted-foreground flex min-h-16 items-center gap-3 text-sm"
         >
           <ArrowLeft className="size-4 shrink-0" aria-hidden="true" />
@@ -63,7 +63,8 @@ export default function SwitchProjectButton({
 
       {nextProject ? (
         <Link
-          href={`/projects/${nextProject.id}`}
+          to="/projects/$projectId"
+          params={{ projectId: nextProject.id }}
           className="group flex min-h-16 min-w-0 items-center justify-end gap-3 md:gap-5"
         >
           <div className="min-w-0 text-right">
@@ -79,7 +80,8 @@ export default function SwitchProjectButton({
         </Link>
       ) : (
         <Link
-          href="/#projects"
+          to="/"
+          hash="projects"
           className="text-muted-foreground flex min-h-16 items-center justify-end gap-3 text-sm"
         >
           All projects

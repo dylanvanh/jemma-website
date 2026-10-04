@@ -4,23 +4,27 @@ export const navBarConfig: NavBarConfig = {
   navItems: [
     {
       title: "Home",
-      href: "/",
+      to: "/",
     },
     {
       title: "About",
-      href: "/#about",
+      to: "/",
+      hash: "about",
     },
     {
       title: "Projects",
-      href: "/#projects",
+      to: "/",
+      hash: "projects",
     },
     {
       title: "Experience",
-      href: "/#experience",
+      to: "/",
+      hash: "experience",
     },
     {
       title: "Contact",
-      href: "/#contact",
+      to: "/",
+      hash: "contact",
     },
   ],
 };

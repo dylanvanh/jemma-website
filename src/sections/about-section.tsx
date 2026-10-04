@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { projectConfig } from "@/config/project-config";
 
@@ -23,12 +22,13 @@ export function AboutSection() {
         <p className="eyebrow">A little about me</p>
         <figure className="about-portrait">
           <div className="about-portrait-image">
-            <Image
+            <img
               src="/jemma-profile.webp"
               alt="Jemma Wedgwood"
-              fill
+              loading="lazy"
+              decoding="async"
               sizes="(max-width: 767px) 120px, 184px"
-              className="object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
           <figcaption>
@@ -69,7 +69,7 @@ export function AboutSection() {
             <span key={skill}>{skill}</span>
           ))}
         </div>
-        <Link href="#experience" className="text-link">
+        <Link to="/" hash="experience" className="text-link">
           More about my background <ArrowUpRight size={16} aria-hidden="true" />
         </Link>
       </div>

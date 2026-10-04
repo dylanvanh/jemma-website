@@ -1,6 +1,6 @@
+import { getImageSources } from "@/lib/images";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { projectConfig } from "@/config/project-config";
 
 export function LandingSection() {
@@ -29,22 +29,25 @@ export function LandingSection() {
             Interiors shaped around the people who live, work and gather in
             them.
           </p>
-          <Link href="#projects" className="pill-link">
+          <Link to="/" hash="projects" className="pill-link">
             Explore my work <ArrowUpRight size={15} aria-hidden="true" />
           </Link>
         </div>
         <Link
-          href="/projects/1"
+          to="/projects/$projectId"
+          params={{ projectId: "1" }}
           className="hero-study"
           aria-label="Explore the PG Bison residential project"
         >
           <div className="hero-study-image">
-            <Image
+            <img
               src="/projects/pg-bison.jpg"
+              srcSet={getImageSources("/projects/pg-bison.jpg")}
               alt="Timber and concrete architecture in the PG Bison concept"
-              fill
+              loading="lazy"
+              decoding="async"
               sizes="180px"
-              className="object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
           <span>
@@ -55,18 +58,20 @@ export function LandingSection() {
       </div>
       <figure className="site-shell hero-figure">
         <Link
-          href={`/projects/${featuredProject.id}`}
+          to="/projects/$projectId"
+          params={{ projectId: featuredProject.id }}
           className="hero-image-link"
           aria-label={`View ${featuredProject.title}, a hospitality design project`}
         >
-          <Image
+          <img
             src={featuredProject.previewImageUrl}
+            srcSet={getImageSources(featuredProject.previewImageUrl)}
             alt="Brew Pub interior: warm brick arches, timber tables and hanging lights"
-            fill
-            priority
+            loading="eager"
+            decoding="async"
             fetchPriority="high"
             sizes="(max-width: 767px) 100vw, (max-width: 1520px) 95vw, 1440px"
-            className="object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <span className="image-open">
             <ArrowUpRight size={22} aria-hidden="true" />
@@ -79,9 +84,9 @@ export function LandingSection() {
           <span className="hero-caption-type">
             {featuredProject.designType}
           </span>
-          <a href="#about" className="scroll-link">
+          <Link to="/" hash="about" className="scroll-link">
             Discover more <ArrowDown size={14} aria-hidden="true" />
-          </a>
+          </Link>
         </figcaption>
       </figure>
     </section>

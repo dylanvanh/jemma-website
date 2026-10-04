@@ -1,18 +1,14 @@
-"use client";
-
+import { getImageSources } from "@/lib/images";
 import { useState } from "react";
-import Image from "next/image";
 import { X } from "lucide-react";
-import { cn, createImagePlaceholderShimmer, toBase64 } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 interface GridGalleryProps extends React.HTMLAttributes<HTMLDivElement> {
   imageUrls: string[];
-  imageQuality: number;
 }
 
 export default function GridGallery({
   imageUrls,
-  imageQuality,
   className,
 }: GridGalleryProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,16 +43,14 @@ export default function GridGallery({
             onClick={() => openModal(url)}
             aria-label={`Open project image ${index + 1}`}
           >
-            <Image
+            <img
               src={url}
+              srcSet={getImageSources(url)}
               alt={`Project study view ${index + 1}`}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              quality={imageQuality}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 50vw, 33vw"
-              placeholder={`data:image/svg+xml;base64,${toBase64(
-                createImagePlaceholderShimmer(400, 300),
-              )}`}
             />
             <span className="bg-background/90 absolute right-3 bottom-3 px-2 py-1 text-xs tabular-nums backdrop-blur-sm">
               {String(index + 1).padStart(2, "0")}
@@ -92,17 +86,18 @@ export default function GridGallery({
                 <p className="text-muted-foreground text-sm">Loading image…</p>
               </div>
             ) : null}
-            <Image
+            <img
               src={selectedImageUrl}
+              srcSet={getImageSources(selectedImageUrl)}
               alt="Enlarged project study"
               width={1200}
               height={800}
+              decoding="async"
+              loading="eager"
               className={cn(
                 "max-h-[90vh] w-auto object-contain",
                 isImageLoading && "invisible absolute",
               )}
-              quality={90}
-              priority
               onLoad={() => setIsImageLoading(false)}
             />
           </div>
