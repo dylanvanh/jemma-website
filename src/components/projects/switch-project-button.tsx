@@ -29,42 +29,62 @@ export default function SwitchProjectButton({
     <nav
       aria-label="Project navigation"
       className={cn(
-        "flex w-full items-center justify-between gap-4",
+        "grid w-full min-w-0 grid-cols-2 gap-4 md:gap-10",
         className,
       )}
     >
       {prevProject ? (
         <Link
           href={`/projects/${prevProject.id}`}
-          className="group text-muted-foreground hover:text-foreground flex min-h-11 items-center gap-3 transition-colors"
+          className="group flex min-h-16 min-w-0 items-center gap-3 md:gap-5"
         >
-          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
-          <div className="text-left">
-            <p className="text-xs tracking-[0.1em] uppercase">Previous</p>
-            <p className="text-foreground text-sm font-medium">
+          <ArrowLeft
+            className="size-4 shrink-0 transition-transform group-hover:-translate-x-1"
+            aria-hidden="true"
+          />
+          <div className="min-w-0 text-left">
+            <p className="text-muted-foreground mb-2 text-xs">
+              Previous project
+            </p>
+            <p className="font-heading text-lg leading-tight tracking-[-0.03em] [overflow-wrap:anywhere] md:text-3xl">
               {prevProject.title}
             </p>
           </div>
         </Link>
       ) : (
-        <div />
+        <Link
+          href="/#projects"
+          className="text-muted-foreground flex min-h-16 items-center gap-3 text-sm"
+        >
+          <ArrowLeft className="size-4 shrink-0" aria-hidden="true" />
+          All projects
+        </Link>
       )}
 
       {nextProject ? (
         <Link
           href={`/projects/${nextProject.id}`}
-          className="group text-muted-foreground hover:text-foreground flex min-h-11 items-center gap-3 transition-colors"
+          className="group flex min-h-16 min-w-0 items-center justify-end gap-3 md:gap-5"
         >
-          <div className="text-right">
-            <p className="text-xs tracking-[0.1em] uppercase">Next</p>
-            <p className="text-foreground text-sm font-medium">
+          <div className="min-w-0 text-right">
+            <p className="text-muted-foreground mb-2 text-xs">Next project</p>
+            <p className="font-heading text-lg leading-tight tracking-[-0.03em] [overflow-wrap:anywhere] md:text-3xl">
               {nextProject.title}
             </p>
           </div>
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          <ArrowRight
+            className="size-4 shrink-0 transition-transform group-hover:translate-x-1"
+            aria-hidden="true"
+          />
         </Link>
       ) : (
-        <div />
+        <Link
+          href="/#projects"
+          className="text-muted-foreground flex min-h-16 items-center justify-end gap-3 text-sm"
+        >
+          All projects
+          <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
+        </Link>
       )}
     </nav>
   );

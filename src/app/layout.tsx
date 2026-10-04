@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 
-import { Outfit, Playfair_Display } from "next/font/google";
+import { Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import { Providers } from "../components/providers/providers";
 import { MainNav } from "@/components/navbar/main-nav";
 import { navBarConfig } from "@/config/nav-config";
@@ -11,14 +12,14 @@ import FooterSection from "@/sections/footer-section";
 
 const fontSans = Outfit({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-outfit",
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const fontHeading = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: ["400", "500", "600", "700"],
+const fontHeading = localFont({
+  src: "../fonts/CalSans-SemiBold.woff2",
+  variable: "--font-cal",
+  display: "swap",
 });
 
 const titleDefault = "Jemma Wedgwood — Interior Designer";
@@ -26,9 +27,12 @@ const descriptionDefault =
   "Cape Town interior designer Jemma Wedgwood creates thoughtful residential, hospitality and workplace interiors.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
+  ),
   title: {
     default: titleDefault,
-    template: "%s - Project Gallery | Jemma Wedwood",
+    template: "%s - Project Gallery | Jemma Wedgwood",
   },
   description: descriptionDefault,
   twitter: {
@@ -50,6 +54,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover" as const,
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -75,9 +80,9 @@ export default function RootLayout({
         <Providers>
           <MainNav navItems={navBarConfig.navItems} />
           {children}
+          <Toaster />
+          <FooterSection />
         </Providers>
-        <Toaster />
-        <FooterSection />
       </body>
     </html>
   );
