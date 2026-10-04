@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,10 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { type ContactFormData } from "@/types/contact-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion } from "motion/react";
-import { useTransition } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import * as z from "zod";
 
 export const contactFormSchema = z.object({
@@ -33,6 +31,7 @@ export const contactFormSchema = z.object({
 
 export function ContactSection() {
   const [isPending, startTransition] = useTransition();
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const form = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
@@ -44,6 +43,7 @@ export function ContactSection() {
   });
 
   function onSubmit(contactFormData: ContactFormData) {
+    setStatus("idle");
     startTransition(async () => {
       try {
         const response = await fetch("/api/contact-form", {
@@ -57,139 +57,124 @@ export function ContactSection() {
         }
 
         form.reset();
-        toast.success("Message sent successfully.");
+        setStatus("success");
       } catch (error) {
         console.error("Error:", error);
-        toast.error("Something went wrong. Please try again.");
+        setStatus("error");
       }
     });
   }
 
   return (
-    <section className="site-shell section-space pt-12 md:pt-16">
-      <div className="bg-accent text-accent-foreground grid overflow-hidden lg:grid-cols-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col justify-center p-7 sm:p-10 lg:col-span-6 lg:p-16"
-        >
-          <p className="text-accent-foreground/70 mb-8 text-xs font-semibold tracking-[0.16em] uppercase">
-            Start a conversation
-          </p>
-          <h3 className="font-heading max-w-[11ch] text-5xl leading-none font-medium tracking-[-0.04em] md:text-6xl lg:text-7xl">
-            Have a space in mind?
-          </h3>
-          <p className="text-accent-foreground/75 mt-8 max-w-md text-base leading-relaxed">
-            Tell me what you&apos;re working on, where it is and what you want
-            the space to feel like. I&apos;ll get back to you as soon as I can.
-          </p>
-
-          <div className="border-accent-foreground/25 mt-12 space-y-4 border-t pt-6">
-            <div className="flex items-center gap-3">
-              <span className="text-accent-foreground/60 text-xs tabular-nums">
-                01
-              </span>
-              <a
-                href="mailto:jemmawedgwood01@gmail.com"
-                className="text-accent-foreground/80 hover:text-accent-foreground min-h-11 py-2 transition-colors"
-              >
-                jemmawedgwood01@gmail.com
-              </a>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-accent-foreground/60 text-xs tabular-nums">
-                02
-              </span>
-              <span className="text-accent-foreground/80">
-                Cape Town, South Africa
-              </span>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-card text-card-foreground flex items-center p-7 sm:p-10 lg:col-span-6 lg:p-16"
-        >
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="w-full space-y-8"
-            >
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-muted-foreground text-xs font-semibold tracking-[0.14em] uppercase">
-                      Name
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Your name"
-                        className="border-border focus-visible:border-accent h-12 rounded-none border-0 border-b bg-transparent px-0 text-base transition-colors focus-visible:ring-0"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-muted-foreground text-xs font-semibold tracking-[0.14em] uppercase">
-                      Email
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="your@email.com"
-                        className="border-border focus-visible:border-accent h-12 rounded-none border-0 border-b bg-transparent px-0 text-base transition-colors focus-visible:ring-0"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-muted-foreground text-xs font-semibold tracking-[0.14em] uppercase">
-                      Message
-                    </FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Tell me about your project..."
-                        className="border-border focus-visible:border-accent min-h-32 resize-none rounded-none border-0 border-b bg-transparent px-0 py-3 text-base transition-colors focus-visible:ring-0"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button
-                type="submit"
-                disabled={isPending}
-                className="bg-foreground text-background hover:bg-foreground/85 mt-4 h-12 w-full rounded-none px-8 transition-all active:translate-y-px md:w-auto"
-              >
-                {isPending ? "Sending…" : "Send enquiry ↗"}
-              </Button>
-            </form>
-          </Form>
-        </motion.div>
+    <section
+      id="contact"
+      className="site-shell contact-section"
+      aria-labelledby="contact-title"
+    >
+      <div className="contact-intro">
+        <p className="eyebrow">Let’s make room for something good</p>
+        <h2 id="contact-title">
+          Your space.
+          <br />
+          Let’s talk<span className="accent-dot">.</span>
+        </h2>
+        <p>
+          Have a project in mind? Tell me about your space and what you want it
+          to feel like.
+        </p>
+        <a href="mailto:jemmawedgwood01@gmail.com" className="contact-email">
+          jemmawedgwood01@gmail.com{" "}
+          <ArrowUpRight size={17} aria-hidden="true" />
+        </a>
       </div>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="contact-form"
+          aria-label="Project enquiry"
+          aria-busy={isPending}
+        >
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="contact-field">
+                <FormLabel>Your name</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Name and surname"
+                    autoComplete="name"
+                    maxLength={100}
+                    disabled={isPending}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="contact-field">
+                <FormLabel>Email address</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder="you@example.com"
+                    autoComplete="email"
+                    spellCheck={false}
+                    disabled={isPending}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem className="contact-field">
+                <FormLabel>A little about your project</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="The space, the location, the idea…"
+                    maxLength={500}
+                    disabled={isPending}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="contact-form-bottom">
+            <button type="submit" className="pill-link" disabled={isPending}>
+              {isPending ? "Sending…" : "Send enquiry"}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </button>
+            <p>
+              Based in Cape Town,
+              <br />
+              South Africa.
+            </p>
+          </div>
+          <div
+            role="status"
+            aria-live="polite"
+            className="contact-status"
+            data-error={status === "error"}
+          >
+            {status === "success" &&
+              "Thank you. Your enquiry has been received."}
+            {status === "error" &&
+              "Your enquiry could not be sent. Please try again or use the email link."}
+          </div>
+        </form>
+      </Form>
     </section>
   );
 }

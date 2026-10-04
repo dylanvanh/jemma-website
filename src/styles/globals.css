@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "../../tokens.css";
+@import "./portfolio.css";
 
 @plugin "@tailwindcss/typography";
 
@@ -13,58 +15,12 @@
   }
 }
 
-:root {
-  --background: oklch(0.955 0.012 78);
-  --foreground: oklch(0.195 0.012 62);
-  --card: oklch(0.975 0.009 78);
-  --card-foreground: oklch(0.195 0.012 62);
-  --popover: oklch(0.975 0.009 78);
-  --popover-foreground: oklch(0.195 0.012 62);
-  --primary: oklch(0.195 0.012 62);
-  --primary-foreground: oklch(0.955 0.012 78);
-  --secondary: oklch(0.895 0.018 75);
-  --secondary-foreground: oklch(0.195 0.012 62);
-  --muted: oklch(0.91 0.014 76);
-  --muted-foreground: oklch(0.43 0.018 62);
-  --accent: oklch(0.47 0.105 42);
-  --accent-foreground: oklch(0.97 0.01 78);
-  --destructive: oklch(0.46 0.18 25);
-  --destructive-foreground: oklch(0.985 0.008 75);
-  --border: oklch(0.8 0.02 74);
-  --input: oklch(0.8 0.02 74);
-  --ring: oklch(0.47 0.105 42);
-  --radius: 0.25rem;
-}
-
-.dark {
-  --background: oklch(0.16 0.012 67);
-  --foreground: oklch(0.91 0.014 76);
-  --card: oklch(0.195 0.012 67);
-  --card-foreground: oklch(0.91 0.014 76);
-  --popover: oklch(0.195 0.012 67);
-  --popover-foreground: oklch(0.91 0.014 76);
-  --primary: oklch(0.91 0.014 76);
-  --primary-foreground: oklch(0.16 0.012 67);
-  --secondary: oklch(0.235 0.016 67);
-  --secondary-foreground: oklch(0.91 0.014 76);
-  --muted: oklch(0.225 0.014 67);
-  --muted-foreground: oklch(0.7 0.014 76);
-  --accent: oklch(0.68 0.105 48);
-  --accent-foreground: oklch(0.16 0.012 67);
-  --destructive: oklch(0.72 0.16 25);
-  --destructive-foreground: oklch(0.94 0.008 75);
-  --border: oklch(0.34 0.018 67);
-  --input: oklch(0.34 0.018 67);
-  --ring: oklch(0.68 0.105 48);
-}
-
 @theme inline {
   --font-sans:
-    var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    var(--font-outfit), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-heading:
-    var(--font-heading), ui-serif, Georgia, Cambria, "Times New Roman", Times,
-    serif;
+    var(--font-cal), var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -127,7 +83,13 @@
     border-color: var(--border);
   }
 
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   html {
+    color-scheme: light;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
@@ -135,20 +97,10 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-sans);
+    font-family: var(--font-outfit), sans-serif;
     font-kerning: normal;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
-  }
-
-  body::before {
-    position: fixed;
-    z-index: 60;
-    inset: 0;
-    pointer-events: none;
-    content: "";
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
   }
 
   ::selection {
@@ -164,7 +116,7 @@
 
 @layer utilities {
   .site-shell {
-    width: min(100% - 2rem, 100rem);
+    width: min(100% - 5rem, 90rem);
     margin-inline: auto;
   }
 
@@ -181,7 +133,9 @@
 
   .section-title {
     font-size: clamp(3rem, 7vw, 7rem);
-    line-height: 0.88;
+    line-height: 0.98;
+    overflow-wrap: anywhere;
+    min-width: 0;
     letter-spacing: -0.045em;
     text-wrap: balance;
   }
@@ -208,5 +162,11 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-shell {
+    width: calc(100% - 2.5rem);
   }
 }

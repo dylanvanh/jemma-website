@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-04",
+  "scope": "app",
+  "framework": "Next.js 15.4 / React 19.1 / Tailwind CSS 4",
+  "originalFonts": ["Outfit", "Playfair Display"],
+  "existingLocalFont": "Cal Sans SemiBold",
+  "originalPalette": "Warm neutral with terracotta accent, OKLCH tokens",
+  "originalMotion": "Motion 12; repeated section entrances",
+  "spacing": "Tailwind spacing with responsive site-shell",
+  "direction": "User-supplied interior design screenshot",
+  "preserve": [
+    "project routes",
+    "project images",
+    "contact endpoint",
+    "existing opportunities work",
+    "metadata spelling correction"
+  ],
+  "introduce": [
+    "Cal Sans headings",
+    "white and black palette",
+    "blue detail accent",
+    "photographic layout",
+    "accessible gallery"
+  ]
+}

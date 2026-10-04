@@ -1,0 +1,39 @@
+/* Shared palette. Images supply the colour; blue marks small details and focus. */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.17 0 0);
+  --card: oklch(0.975 0.002 85);
+  --card-foreground: var(--foreground);
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --secondary: oklch(0.955 0.003 85);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(0.46 0 0);
+  --accent: oklch(0.48 0.22 264);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.49 0.18 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.89 0 0);
+  --input: oklch(0.65 0 0);
+  --ring: var(--accent);
+  --image-ink: oklch(1 0 0);
+  --image-scrim: oklch(0.12 0 0 / 0.43);
+  --radius: 0.25rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.18 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.23 0 0);
+  --secondary: oklch(0.26 0 0);
+  --muted-foreground: oklch(0.73 0 0);
+  --accent: oklch(0.75 0.13 258);
+  --accent-foreground: oklch(0.17 0 0);
+  --border: oklch(0.36 0 0);
+  --input: oklch(0.55 0 0);
+  --destructive: oklch(0.76 0.14 25);
+}

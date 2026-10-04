@@ -9,7 +9,7 @@ export const projectConfig: ProjectConfig = {
       description:
         "Introducing the PG Bison project, a multifunctional space designed to impress and cater to a wide range of needs. This unique location offers distinct areas that harmoniously combine to serve as a single, yet separable venue, perfect for filming and photography. Embracing the elements of fire, earth, air, and water, we create visually captivating spaces across the interior, exterior, and grounds, providing a holistic experience for sleeping, bathing, food preparation, and socializing. In this arid landscape, responsible water use is a priority. This versatile, rentable property promises a blend of sensory delights for unforgettable experiences.",
       designType: "Residential Design",
-      previewImageUrl: "https://i.imgur.com/B3eqyAN.jpg",
+      previewImageUrl: "/projects/pg-bison.jpg",
       imageListUrls: [
         "https://i.imgur.com/B3eqyAN.png",
         "https://i.imgur.com/UCnKrEM.png",
@@ -32,9 +32,9 @@ export const projectConfig: ProjectConfig = {
       href: "/projects/",
       title: "Skin Clinic",
       description:
-        "South Africa's flourishing beer culture has seen a surge in microbreweries and brewpubs, now comprising a substantial portion of the market. Three passionate homebrewers aim to open a brewpub, crafting unique artisan blends with local ingredients. The project entails designing a brewpub with transparent microbrewery operations, establishing a distinctive brand identity, creating a menu with suggested food offerings, and designing unique beer bottle labels to complete the establishment's identity.",
+        "An interior design concept for a skin clinic, with a focus on a calm and welcoming setting. Soft curves, warm timber and a neutral material palette define the reception space. The project study explores the interior through spatial views, drawings and details.",
       designType: "Healing Design",
-      previewImageUrl: "https://i.imgur.com/LHinCeL.jpg",
+      previewImageUrl: "/projects/skin-clinic.jpg",
       imageListUrls: [
         "https://i.imgur.com/LHinCeL.png",
         "https://i.imgur.com/99F8wrN.png",
@@ -62,7 +62,7 @@ export const projectConfig: ProjectConfig = {
       description:
         "This project involves the redesign of a house for Zara and Sam, where Zara faces mobility challenges due to a congenital joint condition. The design goal is to create an inclusive and functional living space that accommodates Zara's needs while reflecting their contemporary and minimalistic style. Key considerations include accessibility, safety, functionality, comfort, and style. The design ensures Zara can move comfortably using forearm crutches, prioritizing safety and functionality, all within a mindful budget. The focus is on making Zara comfortable while considering Sam's preferences.",
       designType: "Inclusive Home",
-      previewImageUrl: "https://i.imgur.com/WcCROfm.jpg",
+      previewImageUrl: "/projects/renovation.jpg",
       imageListUrls: [
         "https://i.imgur.com/WcCROfm.png",
         "https://i.imgur.com/P8zgqQd.png",
@@ -84,7 +84,7 @@ export const projectConfig: ProjectConfig = {
       description:
         "South Africa's flourishing beer culture has seen a surge in microbreweries and brewpubs, now comprising a substantial portion of the market. Three passionate homebrewers aim to open a brewpub, crafting unique artisan blends with local ingredients. The project entails designing a brewpub with transparent microbrewery operations, establishing a distinctive brand identity, creating a menu with suggested food offerings, and designing unique beer bottle labels to complete the establishment's identity.",
       designType: "Hospitality Design",
-      previewImageUrl: "https://i.imgur.com/4Kpmdop.jpg",
+      previewImageUrl: "/projects/brew-pub.jpg",
       imageListUrls: [
         "https://i.imgur.com/4Kpmdop.png",
         "https://i.imgur.com/5ZmbGge.png",
@@ -113,7 +113,7 @@ export const projectConfig: ProjectConfig = {
       description:
         "Booking.com, a global online travel company, seeks an office design that aligns with their corporate culture of flexibility and openness. Their offices, found worldwide, celebrate travel and local culture, while promoting a healthy, productive workplace. The new office project must prioritize a healthy work environment and incorporate sustainable design elements. Colourful, playful, and inviting, the space encourages attendance while accommodating staff from various international offices, embodying Booking.com's unique identity and values.",
       designType: "Healthy Workplace",
-      previewImageUrl: "https://i.imgur.com/CaBXx6L.jpg",
+      previewImageUrl: "/projects/workplace.jpg",
       imageListUrls: [
         "https://i.imgur.com/CaBXx6L.png",
         "https://i.imgur.com/H1x9I5r.png",

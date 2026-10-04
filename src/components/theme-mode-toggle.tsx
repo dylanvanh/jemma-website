@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { Switch } from "./ui/switch";
 
 interface ThemeModeToggleProps {
@@ -9,7 +10,9 @@ interface ThemeModeToggleProps {
 
 export function ThemeModeToggle({ useSwitcherView }: ThemeModeToggleProps) {
   const { setTheme, resolvedTheme } = useTheme();
-  const isDarkMode = resolvedTheme === "dark";
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isDarkMode = mounted && resolvedTheme === "dark";
 
   const handleToggle = () => {
     setTheme(isDarkMode ? "light" : "dark");
@@ -21,6 +24,7 @@ export function ThemeModeToggle({ useSwitcherView }: ThemeModeToggleProps) {
         <Switch
           id="theme-toggle"
           checked={isDarkMode}
+          disabled={!mounted}
           onCheckedChange={handleToggle}
         />
         <span className="text-muted-foreground text-sm">
@@ -33,6 +37,7 @@ export function ThemeModeToggle({ useSwitcherView }: ThemeModeToggleProps) {
   return (
     <button
       onClick={handleToggle}
+      disabled={!mounted}
       className="border-border text-muted-foreground hover:text-foreground min-h-11 border-l pl-5 text-xs font-semibold tracking-[0.14em] uppercase transition-colors active:translate-y-px"
       aria-label={`Switch to ${isDarkMode ? "light" : "dark"} theme`}
     >

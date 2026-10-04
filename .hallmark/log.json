@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2026-10-04",
+    "scope": "app",
+    "genre": "editorial",
+    "macrostructure": "Photographic",
+    "theme": "studied-DNA (source: user image)",
+    "fonts": ["Cal Sans SemiBold", "Outfit"],
+    "referenceOverrides": [
+      "white surface",
+      "bold headings",
+      "asymmetric introduction",
+      "pill controls"
+    ],
+    "scores": {
+      "philosophy": 5,
+      "hierarchy": 4,
+      "execution": 4,
+      "specificity": 5,
+      "restraint": 4,
+      "variety": 5
+    },
+    "browserChecks": {
+      "homeWidths": [320, 375, 414, 768, 1280, 1408],
+      "horizontalOverflow": false,
+      "mobileMenu": "pass",
+      "emptyContactValidation": "pass; first invalid field receives focus",
+      "gallery": "grid and single view, arrow keys, Escape, focus return passed",
+      "projectNavigation": "project 1 to 2 passed; last project controls verified",
+      "longTitleAt320": "pass",
+      "mobileBriefExpansion": "pass"
+    },
+    "limits": ["No contact message sent", "No deployment performed"],
+    "validation": {
+      "productionBuild": "pass",
+      "types": "pass",
+      "lint": "pass",
+      "format": "pass",
+      "productionThemeReload": "pass; no browser errors"
+    }
+  }
+]
